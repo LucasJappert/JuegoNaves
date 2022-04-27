@@ -23,10 +23,10 @@ export default class ManagerEnemigos{
         });
     }
     ChequearNuevosEnemigos(){
-        if (this.enemigos.length >= LimiteEnemigos) return;
+        if (this.enemigos.length >= limiteEnemigos) return;
 
         let milisegundos = new Date().getTime() - this.ultimoEnemigoCreado.getTime();
-        if (milisegundos < 500) return;
+        if (milisegundos < 200) return;
 
         this.ultimoEnemigoCreado = new Date();
         this.AgregarEnemigo();
@@ -34,5 +34,22 @@ export default class ManagerEnemigos{
     AgregarEnemigo(){
         let nuevoEnemigo = new Enemigo(this.canvas, this.ctx);
         this.enemigos.push(nuevoEnemigo);
+    }
+    ObtenerEnemigoMasCercano(posX, posY){
+        let menorDistancia = 0;
+        let enemigoTemporal = null;
+        for (let i = 0; i < this.enemigos.length; i++) {
+            let enemigo = this.enemigos[i];
+            if (enemigo.cargaLista == false) continue;
+
+            let a = enemigo.x - posX;
+            let b = enemigo.y - posY;
+            let distancia = Math.hypot(a, b);
+            if (distancia < menorDistancia || enemigoTemporal == null) {
+                enemigoTemporal = enemigo;
+                menorDistancia = distancia;
+            }
+        }
+        return enemigoTemporal;
     }
 }
