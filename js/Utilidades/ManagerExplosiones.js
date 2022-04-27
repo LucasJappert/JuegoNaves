@@ -17,7 +17,7 @@ export default class ManagerExplosiones{
         });
     }
     CrearExplosion(posX, posY){
-        let explosion = new Explosion(canvas, ctx, posX, posY);
+        let explosion = new Explosion(posX, posY);
         this.explosiones.push(explosion);
     }
 }
