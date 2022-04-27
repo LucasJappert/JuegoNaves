@@ -1,4 +1,4 @@
-import {ReiniciarJuego} from "./principal.js";
+import { ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
 
 window.addEventListener('keydown', KeyDownDetectado);
 window.addEventListener('keyup', KeyUpDetectado);

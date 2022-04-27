@@ -1,3 +1,7 @@
+import Nave from "./Nave.js";
+import ManagerEnemigos from "./ManagerEnemigos.js";
+import ManagerExplosiones from "./ManagerExplosiones.js";
+
 const RandomEntre = (min, max) => {
     return min + Math.random() * (max - min);
 }
@@ -23,6 +27,37 @@ const CargarImagen = path => {
             reject(e)
         }
     })
-  }
+}
 
-export {RandomEntre, Colision, CargarImagen};
+async function PrecargarImagenes(){
+    let urls = [];
+    urls.push("../imagenes/minave.png");
+    urls.push("../imagenes/enemy1.png");
+    urls.push("../imagenes/enemy2.png");
+    urls.push("../imagenes/enemy3.png");
+    urls.push("../imagenes/enemy4.png");
+    urls.push("../imagenes/enemy5.png");
+    urls.push("../imagenes/enemy6.png");
+    for (let i = 0; i < urls.length; i++) {
+        const url = urls[i];
+        let img = await CargarImagen(url);
+        imagenes.push({
+            src: url,
+            img: img
+        });
+    }
+}
+
+function ReiniciarJuego() {
+    miNave = new Nave(canvas, ctx);
+    miManagerEnemigos = new ManagerEnemigos(canvas, ctx);
+    miManagerExplosiones = new ManagerExplosiones(canvas, ctx);
+    juegoFinalizado = false;
+    puntajeTotal = 0;
+}
+
+export {
+    RandomEntre, 
+    Colision, CargarImagen, PrecargarImagenes,
+    ReiniciarJuego
+};
