@@ -1,10 +1,8 @@
 import {Colision} from "./FuncionesUtiles.js";
 export default class Proyectil{
-    constructor(x, y, canvas, ctx){
+    constructor(x, y){
         this.x = x;
         this.y = y;
-        this.canvas = canvas;
-        this.ctx = ctx;
         this.velocidad = -10;
         this.eliminar = false;
         this.radio = 5;
@@ -22,7 +20,6 @@ export default class Proyectil{
         if (this.y < 0) this.eliminar = true;
     }
     Dibujar(){
-        let ctx = this.ctx;
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = '#0F0';

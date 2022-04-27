@@ -1,11 +1,9 @@
 export default class Enemigo{
-    constructor(canvas, ctx){
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor(){
         this.velocidad = Math.random() * 2 + 0.5;
         this.scale = 0.5;
         this.puntajeAlMorir = 20;
-        this.x = Math.round(Math.random() * this.canvas.width);
+        this.x = Math.round(Math.random() * canvas.width);
         this.dañoPorColision = 10;
 
         let src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
@@ -28,11 +26,9 @@ export default class Enemigo{
         this.y += this.velocidad;
         this.rectArea.x = this.x - (this.tamañoNave * this.scale / 2);
         this.rectArea.y = this.y - (this.tamañoNave * this.scale / 2);
-        if (this.y > this.canvas.height + this.tamañoNave/2) this.eliminar = true;
+        if (this.y > canvas.height + this.tamañoNave/2) this.eliminar = true;
     }
     Dibujar(){
-        let ctx = this.ctx;
-
         //dibuja fondo cuadrado blanco
         // ctx.beginPath();
         // ctx.fillStyle = 'rgba(255, 255, 255, 1)';

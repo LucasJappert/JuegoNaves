@@ -2,10 +2,8 @@ import Proyectil from "./Proyectil.js";
 import {Colision} from "./FuncionesUtiles.js";
 
 export default class Nave{
-    constructor(canvas, ctx){
+    constructor(){
         this.vidaActual = 100;
-        this.canvas = canvas;
-        this.ctx = ctx;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.velocidad = 5;
@@ -49,7 +47,6 @@ export default class Nave{
     Dibujar(){
 
         if (this.rotacion >= 360) this.rotacion = 0;
-        let ctx = this.ctx;
 
         //dibuja fondo cuadrado blanco
         // ctx.beginPath();
@@ -72,7 +69,7 @@ export default class Nave{
         if (milisegundos < this.velocidadDisparo) return;
 
         this.ultimoDisparo = new Date();
-        let nuevoProyectil = new Proyectil(this.x, this.y - this.tamañoNave/2, this.canvas, this.ctx);
+        let nuevoProyectil = new Proyectil(this.x, this.y - this.tamañoNave/2, canvas, ctx);
         this.proyectiles.push(nuevoProyectil);
     }
 
@@ -95,9 +92,9 @@ export default class Nave{
         if (tecla == "a") this.x -= this.velocidad;
         if (tecla == "d") this.x += this.velocidad;
         
-        if (this.x > this.canvas.width - this.tamañoNave/2) this.x = this.canvas.width - this.tamañoNave/2;
+        if (this.x > canvas.width - this.tamañoNave/2) this.x = canvas.width - this.tamañoNave/2;
         if (this.x < this.tamañoNave/2) this.x = this.tamañoNave/2;
-        if (this.y > this.canvas.height - this.tamañoNave/2) this.y = this.canvas.height - this.tamañoNave/2;
+        if (this.y > canvas.height - this.tamañoNave/2) this.y = canvas.height - this.tamañoNave/2;
         if (this.y < this.tamañoNave/2) this.y = this.tamañoNave/2;
     }
 }

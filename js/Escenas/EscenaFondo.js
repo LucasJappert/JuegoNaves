@@ -1,9 +1,7 @@
 class EscenaFondo{
-    constructor(ctx){
-        this.ctx = ctx;
+    constructor(){
     }
     Dibujar(){
-        let ctx = this.ctx;
         ctx.save();
         ctx.setTransform(1,0,0,1,0,0);
         ctx.clearRect(0,0, canvas.width, canvas.height);

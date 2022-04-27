@@ -1,6 +1,5 @@
 class EscenaInterfaceUsuario{
-    constructor(ctx){
-        this.ctx = ctx;
+    constructor(){
         this.fps;
         this.times = [0];
     }
@@ -11,7 +10,6 @@ class EscenaInterfaceUsuario{
         this.times.push(timestamp);
         this.fps = this.times.length;
 
-        let ctx = this.ctx;
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = 'white';

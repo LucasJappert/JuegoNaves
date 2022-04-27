@@ -1,9 +1,7 @@
 class EscenaGameOver{
-    constructor(ctx){
-        this.ctx = ctx;
+    constructor(){
     }
     Dibujar(){
-        let ctx = this.ctx;
         ctx.save();
         
         ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';

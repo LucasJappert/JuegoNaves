@@ -1,8 +1,6 @@
 import Enemigo from "./Enemigo.js";
 export default class ManagerEnemigos{
-    constructor(canvas, ctx){
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor(){
         this.enemigos = [];
         this.ultimoEnemigoCreado = new Date();
     }
@@ -32,7 +30,7 @@ export default class ManagerEnemigos{
         this.AgregarEnemigo();
     }
     AgregarEnemigo(){
-        let nuevoEnemigo = new Enemigo(this.canvas, this.ctx);
+        let nuevoEnemigo = new Enemigo(canvas, ctx);
         this.enemigos.push(nuevoEnemigo);
     }
     ObtenerEnemigoMasCercano(posX, posY){

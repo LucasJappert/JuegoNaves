@@ -49,9 +49,9 @@ async function PrecargarImagenes(){
 }
 
 function ReiniciarJuego() {
-    miNave = new Nave(canvas, ctx);
-    miManagerEnemigos = new ManagerEnemigos(canvas, ctx);
-    miManagerExplosiones = new ManagerExplosiones(canvas, ctx);
+    miNave = new Nave();
+    miManagerEnemigos = new ManagerEnemigos();
+    miManagerExplosiones = new ManagerExplosiones();
     juegoFinalizado = false;
     puntajeTotal = 0;
 }

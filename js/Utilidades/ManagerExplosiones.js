@@ -1,8 +1,6 @@
 import Explosion from "./Explosion.js";
 export default class ManagerExplosiones{
-    constructor(canvas, ctx){
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor(){
         this.explosiones = [];
     }
     
@@ -19,7 +17,7 @@ export default class ManagerExplosiones{
         });
     }
     CrearExplosion(posX, posY){
-        let explosion = new Explosion(this.canvas, this.ctx, posX, posY);
+        let explosion = new Explosion(canvas, ctx, posX, posY);
         this.explosiones.push(explosion);
     }
 }

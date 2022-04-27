@@ -1,15 +1,13 @@
 import { RandomEntre } from "./FuncionesUtiles.js";
 export default class Explosion{
-    constructor(canvas, ctx, x, y){
+    constructor(x, y){
         this.particulas = [];
-        this.canvas = canvas;
-        this.ctx = ctx;
         // var img = new Image();
         // img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
         // this.image = img;
         this.eliminar = false;
         for (let i = 0; i < 60; i++) {
-            let particula = new Particula(canvas, ctx, x, y);
+            let particula = new Particula(x, y);
             this.particulas.push(particula);
         }
     }
@@ -29,9 +27,7 @@ export default class Explosion{
 }
 
 class Particula{
-    constructor(canvas, ctx, x, y){
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor(x, y){
         this.velocidad = 2;
         this.dVelocidad = RandomEntre(0.94, 0.98);
         this.radio = 3;
@@ -55,7 +51,6 @@ class Particula{
         if (this.velocidad <= 0 || this.opacity <= 0.05) this.eliminar = true;
     }
     Dibujar(){
-        let ctx = this.ctx;
         this.color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`;
         ctx.save();
         ctx.beginPath();
