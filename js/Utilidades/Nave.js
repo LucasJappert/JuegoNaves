@@ -3,6 +3,7 @@ import {Colision} from "./FuncionesUtiles.js";
 
 export default class Nave{
     constructor(canvas, ctx){
+        this.vidaActual = 100;
         this.canvas = canvas;
         this.ctx = ctx;
         this.x = canvas.width / 2;
@@ -61,7 +62,7 @@ export default class Nave{
         // ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         // ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
         // ctx.stroke();
-
+        ctx.save();
         ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y); // sets scales and origin
         ctx.rotate(this.rotacion * Math.PI/180);
         ctx.drawImage(this.image, -this.tamañoNave, -this.tamañoNave);
@@ -70,6 +71,7 @@ export default class Nave{
         this.proyectiles.forEach(proyectil => {
             proyectil.Dibujar();
         });
+        ctx.restore();
     }
     Disparar(){
         let milisegundos = new Date().getTime() - this.ultimoDisparo.getTime();
@@ -84,6 +86,12 @@ export default class Nave{
         let enemigoMasCercano = miManagerEnemigos.ObtenerEnemigoMasCercano(this.x, this.y);
         if (enemigoMasCercano != null){
             if (Colision(this.rectArea, enemigoMasCercano.rectArea)){
+                enemigoMasCercano.Destruir();
+                this.vidaActual -= enemigoMasCercano.dañoPorColision;
+                if (this.vidaActual <= 0) {
+                    this.vidaActual = 0;
+                    juegoFinalizado = true;
+                }
             }
         }
     }

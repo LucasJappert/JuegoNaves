@@ -1,3 +1,5 @@
+import {ReiniciarJuego} from "./principal.js";
+
 window.addEventListener('keydown', KeyDownDetectado);
 window.addEventListener('keyup', KeyUpDetectado);
 window.addEventListener('keypress', KeyPressDetectado);
@@ -11,6 +13,7 @@ function KeyUpDetectado(evento) {
 }
 function KeyPressDetectado(evento) {
     if (evento.key == "p") juegoEnPausa = !juegoEnPausa;
+    if (evento.key == "Enter") ReiniciarJuego();
 }
 function MouseDownDetectado(evento) {
     // console.log(evento.clientX, evento.clientY);

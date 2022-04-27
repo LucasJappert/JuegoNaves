@@ -23,21 +23,21 @@ export default class Proyectil{
     }
     Dibujar(){
         let ctx = this.ctx;
+        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = '#0F0';
         ctx.strokeStyle = '#0F0';
         ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
+        ctx.restore();
     }
     ChequearImpactoSobreEnemigo(){
         let enemigoMasCercano = miManagerEnemigos.ObtenerEnemigoMasCercano(this.x, this.y);
         if (enemigoMasCercano != null){
             if (Colision(this.rectArea, enemigoMasCercano.rectArea)){
                 this.eliminar = true;
-                enemigoMasCercano.eliminar = true;
-                miManagerExplosiones.CrearExplosion(enemigoMasCercano.x, enemigoMasCercano.y);
-                puntajeTotal += enemigoMasCercano.puntajeAlMorir;
+                enemigoMasCercano.Destruir();
             }
         }
     }

@@ -57,11 +57,13 @@ class Particula{
     Dibujar(){
         let ctx = this.ctx;
         this.color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`;
+        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.color;
         ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
+        ctx.restore();
     }
 }

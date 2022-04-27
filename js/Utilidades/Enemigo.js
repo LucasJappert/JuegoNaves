@@ -7,6 +7,7 @@ export default class Enemigo{
         this.puntajeAlMorir = 20;
         this.x = Math.round(Math.random() * this.canvas.width);
         var img = new Image();
+        this.dañoPorColision = 10;
         img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
         img.onload = () => {
             this.image = img;
@@ -47,5 +48,10 @@ export default class Enemigo{
         ctx.drawImage(this.image, -this.tamañoNave/2, -this.tamañoNave/2);
         ctx.setTransform(1,0,0,1,0,0);
 
+    }
+    Destruir(){
+        this.eliminar = true;
+        miManagerExplosiones.CrearExplosion(this.x, this.y);
+        puntajeTotal += this.puntajeAlMorir;
     }
 }
