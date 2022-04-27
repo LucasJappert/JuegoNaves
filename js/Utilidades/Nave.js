@@ -47,12 +47,6 @@ export default class Nave{
     Dibujar(){
 
         if (this.rotacion >= 360) this.rotacion = 0;
-
-        //dibuja fondo cuadrado blanco
-        // ctx.beginPath();
-        // ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        // ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
-        // ctx.stroke();
         ctx.save();
         ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y); // sets scales and origin
         ctx.rotate(this.rotacion * Math.PI/180);

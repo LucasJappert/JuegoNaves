@@ -29,17 +29,18 @@ export default class Enemigo{
         if (this.y > canvas.height + this.tamañoNave/2) this.eliminar = true;
     }
     Dibujar(){
-        //dibuja fondo cuadrado blanco
-        // ctx.beginPath();
-        // ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        // ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
-        // ctx.stroke();
 
-        ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y); // sets scales and origin
+        ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y);
         //ctx.rotate(this.rotacion * Math.PI/180);
         ctx.drawImage(this.image, -this.tamañoNave/2, -this.tamañoNave/2);
         ctx.setTransform(1,0,0,1,0,0);
 
+    }
+    DibujarRectanguloFondo(){
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+        ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
+        ctx.stroke();
     }
     Destruir(){
         this.eliminar = true;
