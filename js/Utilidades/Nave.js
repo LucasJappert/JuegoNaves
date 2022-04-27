@@ -10,29 +10,24 @@ export default class Nave{
         this.y = canvas.height / 2;
         this.velocidad = 5;
         this.scale = 0.5;
-        var img = new Image();
-        img.src = '../imagenes/minave.png';
-        img.onload = () => {
-            this.image = img;
-            this.tamañoNave = img.width * this.scale;
-            let areaX = this.x - (this.tamañoNave / 2);
-            let areaY = this.y - (this.tamañoNave / 2);
-            this.rectArea = {
-                x: areaX, 
-                y: areaY,  
-                w: this.tamañoNave, 
-                h: this.tamañoNave
-            };
-            this.cargaLista = true;
+        var itemImagen = imagenes.find(item => item.src == "../imagenes/minave.png");
+        this.image = itemImagen.img;
+        this.tamañoNave = this.image.width * this.scale;
+        let areaX = this.x - (this.tamañoNave / 2);
+        let areaY = this.y - (this.tamañoNave / 2);
+        this.rectArea = {
+            x: areaX, 
+            y: areaY,  
+            w: this.tamañoNave, 
+            h: this.tamañoNave
         };
 
         this.rotacion = 0;
         this.proyectiles = [];
         this.ultimoDisparo = new Date();
-        this.velocidadDisparo = 200;
+        this.velocidadDisparo = 100;
     }
     Actualizar(){
-        if (!this.cargaLista) return;
 
         if (TeclasPresionadas.hasOwnProperty("w")) this.Mover("w");
         if (TeclasPresionadas.hasOwnProperty("s")) this.Mover("s");
@@ -52,7 +47,6 @@ export default class Nave{
         this.rectArea.y = this.y - (this.tamañoNave / 2);
     }
     Dibujar(){
-        if (!this.cargaLista) return;
 
         if (this.rotacion >= 360) this.rotacion = 0;
         let ctx = this.ctx;

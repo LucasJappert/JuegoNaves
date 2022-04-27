@@ -12,4 +12,17 @@ const Colision = (rect1, rect2) => {
     return false;
 }
 
-export {RandomEntre, Colision};
+const CargarImagen = path => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+            resolve(img)
+        }
+        img.onerror = e => {
+            reject(e)
+        }
+    })
+  }
+
+export {RandomEntre, Colision, CargarImagen};

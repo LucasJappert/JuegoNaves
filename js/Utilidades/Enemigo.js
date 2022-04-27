@@ -6,35 +6,31 @@ export default class Enemigo{
         this.scale = 0.5;
         this.puntajeAlMorir = 20;
         this.x = Math.round(Math.random() * this.canvas.width);
-        var img = new Image();
         this.dañoPorColision = 10;
-        img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
-        img.onload = () => {
-            this.image = img;
-            this.tamañoNave = img.width * this.scale;
-            this.y = 0 - this.tamañoNave/2;
-            let areaX = this.x - (this.tamañoNave * this.scale / 2);
-            let areaY = this.y - (this.tamañoNave * this.scale / 2);
-            this.rectArea = {
-                x: areaX, 
-                y: areaY,  
-                w: this.tamañoNave, 
-                h: this.tamañoNave
-            };
-            this.cargaLista = true;
+
+        let src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
+        var itemImagen = imagenes.find(item => item.src == src);
+        this.image = itemImagen.img;
+
+        this.tamañoNave = this.image.width * this.scale;
+        this.y = 0 - this.tamañoNave/2;
+        let areaX = this.x - (this.tamañoNave * this.scale / 2);
+        let areaY = this.y - (this.tamañoNave * this.scale / 2);
+        this.rectArea = {
+            x: areaX, 
+            y: areaY,  
+            w: this.tamañoNave, 
+            h: this.tamañoNave
         };
         this.eliminar = false;
-        this.cargaLista = false;
     }
     Actualizar() {
-        if (!this.cargaLista) return;
         this.y += this.velocidad;
         this.rectArea.x = this.x - (this.tamañoNave * this.scale / 2);
         this.rectArea.y = this.y - (this.tamañoNave * this.scale / 2);
         if (this.y > this.canvas.height + this.tamañoNave/2) this.eliminar = true;
     }
     Dibujar(){
-        if (!this.cargaLista) return;
         let ctx = this.ctx;
 
         //dibuja fondo cuadrado blanco
