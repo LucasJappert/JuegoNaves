@@ -6,6 +6,7 @@ export default class Proyectil{
         this.ctx = ctx;
         this.velocidad = -10;
         this.eliminar = false;
+        this.radio = 5;
     }
     Actualizar(){
         this.y += this.velocidad;
@@ -16,7 +17,7 @@ export default class Proyectil{
         ctx.beginPath();
         ctx.fillStyle = '#0F0';
         ctx.strokeStyle = '#0F0';
-        ctx.arc(this.x, this.y, 10, 0, 2 * Math.PI, false);
+        ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
     }

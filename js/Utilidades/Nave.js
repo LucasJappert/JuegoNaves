@@ -14,6 +14,8 @@ export default class Nave{
         this.tamañoNave = this.image.width;
         this.proyectiles = [];
         this.ultimoDisparo = new Date();
+        this.velocidadDisparo = 200;
+        this.scale = 0.5;
     }
     Actualizar(){
         if (TeclasPresionadas.hasOwnProperty("w")) this.Mover("w");
@@ -30,13 +32,11 @@ export default class Nave{
     }
     Dibujar(){
         if (this.rotacion >= 360) this.rotacion = 0;
-        var ctx = this.ctx;
+        let ctx = this.ctx;
 
-        let scale = 1;
-        ctx.beginPath();
-        ctx.setTransform(scale, 0, 0, scale, this.x, this.y); // sets scales and origin
+        ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y); // sets scales and origin
         ctx.rotate(this.rotacion * Math.PI/180);
-        ctx.drawImage(this.image, -this.tamañoNave / 2, -this.tamañoNave / 2);
+        ctx.drawImage(this.image, -this.tamañoNave/2, -this.tamañoNave/2);
         ctx.setTransform(1,0,0,1,0,0);
 
         this.proyectiles.forEach(proyectil => {
@@ -45,7 +45,7 @@ export default class Nave{
     }
     Disparar(){
         let milisegundos = new Date().getTime() - this.ultimoDisparo.getTime();
-        if (milisegundos < 100) return;
+        if (milisegundos < this.velocidadDisparo) return;
 
         this.ultimoDisparo = new Date();
         let nuevoProyectil = new Proyectil(this.x, this.y - this.tamañoNave/2, this.canvas, this.ctx);
