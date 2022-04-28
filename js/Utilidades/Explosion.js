@@ -6,7 +6,7 @@ export default class Explosion{
         // img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
         // this.image = img;
         this.eliminar = false;
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 20; i++) {
             let particula = new Particula(x, y);
             this.particulas.push(particula);
         }
@@ -30,7 +30,7 @@ class Particula{
     constructor(x, y){
         this.velocidad = 2;
         this.dVelocidad = RandomEntre(0.94, 0.98);
-        this.radio = 3;
+        this.radio = RandomEntre(1, 4);
         this.x = x;
         this.y = y;
         this.dx = RandomEntre(-2, 2);
@@ -38,9 +38,9 @@ class Particula{
         this.scale = 1;
         this.opacity = 1;
         this.dOpacity = RandomEntre(0.94, 0.97);
-        this.r = Math.random() * 255;
-        this.g = Math.random() * 255;
-        this.b = Math.random() * 255;
+        this.r = 255;
+        this.g = 255;
+        this.b = 255;
     }
     
     Actualizar(){
