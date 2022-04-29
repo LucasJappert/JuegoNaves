@@ -1,4 +1,4 @@
-import Enemigo from "./Enemigo.js";
+import { Enemigo } from "../Modelos/Enemigo.js";
 export default class ManagerEnemigos{
     constructor(){
         this.enemigos = [];
@@ -30,7 +30,9 @@ export default class ManagerEnemigos{
         this.AgregarEnemigo();
     }
     AgregarEnemigo(){
-        let nuevoEnemigo = new Enemigo(canvas, ctx);
+        var x = Math.round(Math.random() * canvas.width);
+        let nombreImagen = `enemy${Math.floor(Math.random() * 6) + 1}`;
+        let nuevoEnemigo = new Enemigo(100, nombreImagen, x, -64);
         this.enemigos.push(nuevoEnemigo);
     }
     ObtenerEnemigoMasCercano(posX, posY){

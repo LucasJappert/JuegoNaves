@@ -14,4 +14,6 @@ var imagenes = [];
 var miNave;
 var miManagerEnemigos;
 var miManagerExplosiones;
+var miManagerProyectiles;
+var nave1;
 

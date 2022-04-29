@@ -16,17 +16,18 @@ const Actualizar = (timestamp) => {
         miNave.Actualizar();
         miManagerEnemigos.Actualizar();
         miManagerExplosiones.Actualizar();
+        miManagerProyectiles.Actualizar();
     } 
     
     //Limpiar canvas
     miEscenaFondo.Dibujar();
-
 
     //DIBUJO MUNDO
     miNave.Dibujar(); 
     miManagerEnemigos.Dibujar();
     miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar(timestamp);
+    miManagerProyectiles.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
     

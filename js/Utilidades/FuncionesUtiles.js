@@ -1,6 +1,7 @@
-import Nave from "./Nave.js";
 import ManagerEnemigos from "./ManagerEnemigos.js";
 import ManagerExplosiones from "./ManagerExplosiones.js";
+import ManagerProyectiles from "./ManagerProyectiles.js";
+import { MiNave } from "../Modelos/MiNave.js";
 
 const RandomEntre = (min, max) => {
     return min + Math.random() * (max - min);
@@ -29,35 +30,47 @@ const CargarImagen = path => {
     })
 }
 
-async function PrecargarImagenes(){
-    let urls = [];
-    urls.push("../imagenes/minave.png");
-    urls.push("../imagenes/enemy1.png");
-    urls.push("../imagenes/enemy2.png");
-    urls.push("../imagenes/enemy3.png");
-    urls.push("../imagenes/enemy4.png");
-    urls.push("../imagenes/enemy5.png");
-    urls.push("../imagenes/enemy6.png");
-    for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
+async function PrecargarImagenes() {
+    let nombres = [];
+    nombres.push("minave");
+    nombres.push("enemy1");
+    nombres.push("enemy2");
+    nombres.push("enemy3");
+    nombres.push("enemy4");
+    nombres.push("enemy5");
+    nombres.push("enemy6");
+    for (let i = 0; i < nombres.length; i++) {
+        const url = `../imagenes/${nombres[i]}.png`;
         let img = await CargarImagen(url);
         imagenes.push({
-            src: url,
+            src: nombres[i],
             img: img
         });
     }
 }
 
 function ReiniciarJuego() {
-    miNave = new Nave();
+    miNave = new MiNave(100, "minave", canvas.width/2, canvas.height-100);
     miManagerEnemigos = new ManagerEnemigos();
     miManagerExplosiones = new ManagerExplosiones();
+    miManagerProyectiles = new ManagerProyectiles();
+
     juegoFinalizado = false;
     puntajeTotal = 0;
 }
 
+/**
+ * Enum for common colors.
+ * @readonly
+ * @enum {{name: string, hex: string}}
+ */
+const TipoObjeto = Object.freeze({
+    Jugador: "Jugador",
+    Enemigo: "Enemigo"
+});
+
 export {
-    RandomEntre, 
+    RandomEntre,
     Colision, CargarImagen, PrecargarImagenes,
-    ReiniciarJuego
+    ReiniciarJuego, TipoObjeto
 };

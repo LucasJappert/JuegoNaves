@@ -8,8 +8,8 @@ export default class Nave{
         this.y = canvas.height / 2;
         this.velocidad = 5;
         this.scale = 0.5;
-        var itemImagen = imagenes.find(item => item.src == "../imagenes/minave.png");
-        this.image = itemImagen.img;
+        var imagen = imagenes.find(item => item.src == "minave");
+        this.image = imagen.img;
         this.tamañoNave = this.image.width * this.scale;
         let areaX = this.x - (this.tamañoNave / 2);
         let areaY = this.y - (this.tamañoNave / 2);
@@ -21,7 +21,7 @@ export default class Nave{
         };
 
         this.rotacion = 0;
-        this.proyectiles = [];
+        //this.proyectiles = [];
         this.ultimoDisparo = new Date();
         this.velocidadDisparo = 100;
     }
@@ -33,13 +33,7 @@ export default class Nave{
         if (TeclasPresionadas.hasOwnProperty("d")) this.Mover("d");
         if (TeclasPresionadas.hasOwnProperty(" ")) this.Disparar();
 
-        this.ChequearImpactoSobreEnemigo();
-        var i = this.proyectiles.length;
-        while(i--) {
-            this.proyectiles[i].Actualizar();
-            this.proyectiles[i].ChequearImpactoSobreEnemigo();
-            if (this.proyectiles[i].eliminar) this.proyectiles.splice(i, 1);
-        }
+        this.ChequearImpactoDeEnemigo();
         
         this.rectArea.x = this.x - (this.tamañoNave / 2);
         this.rectArea.y = this.y - (this.tamañoNave / 2);
@@ -53,9 +47,6 @@ export default class Nave{
         ctx.drawImage(this.image, -this.tamañoNave, -this.tamañoNave);
         ctx.setTransform(1,0,0,1,0,0);
 
-        this.proyectiles.forEach(proyectil => {
-            proyectil.Dibujar();
-        });
         ctx.restore();
     }
     Disparar(){
@@ -63,11 +54,10 @@ export default class Nave{
         if (milisegundos < this.velocidadDisparo) return;
 
         this.ultimoDisparo = new Date();
-        let nuevoProyectil = new Proyectil(this.x, this.y - this.tamañoNave/2, canvas, ctx);
-        this.proyectiles.push(nuevoProyectil);
+        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNave/2);
     }
 
-    ChequearImpactoSobreEnemigo(){
+    ChequearImpactoDeEnemigo(){
         let enemigoMasCercano = miManagerEnemigos.ObtenerEnemigoMasCercano(this.x, this.y);
         if (enemigoMasCercano != null){
             if (Colision(this.rectArea, enemigoMasCercano.rectArea)){

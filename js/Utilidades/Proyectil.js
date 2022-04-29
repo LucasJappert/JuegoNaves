@@ -1,11 +1,13 @@
-import {Colision} from "./FuncionesUtiles.js";
+import {Colision, TipoObjeto} from "./FuncionesUtiles.js";
 export default class Proyectil{
-    constructor(x, y){
+    constructor(x, y, disparadoPor){
         this.x = x;
         this.y = y;
         this.velocidad = -10;
         this.eliminar = false;
         this.radio = 5;
+        this.disparadoPor = disparadoPor;
+        this.daño = 40;
         this.rectArea = {
             x: this.x - this.radio, 
             y: this.y - this.radio,  
@@ -18,6 +20,9 @@ export default class Proyectil{
         this.rectArea.x = this.x;
         this.rectArea.y = this.y;
         if (this.y < 0) this.eliminar = true;
+        if(this.disparadoPor = TipoObjeto.Jugador){
+            this.ChequearImpactoSobreEnemigo();
+        }
     }
     Dibujar(){
         ctx.save();
@@ -34,7 +39,7 @@ export default class Proyectil{
         if (enemigoMasCercano != null){
             if (Colision(this.rectArea, enemigoMasCercano.rectArea)){
                 this.eliminar = true;
-                enemigoMasCercano.Destruir();
+                enemigoMasCercano.ImpactoProyectil(this);
             }
         }
     }
