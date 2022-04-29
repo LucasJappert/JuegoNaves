@@ -19,14 +19,14 @@ var escenaUIMobile = new EscenaUIMobile();
 function Actualizar(timestamp) {
 
     //ACTUALIZO MUNDO
-    if (juegoEnPausa == false && juegoFinalizado == false){
-        escenaUIMobile.Actualizar();
-        miEscenaFondo.Actualizar();
-        miNave.Actualizar();
-        miManagerEnemigos.Actualizar();
-        miManagerExplosiones.Actualizar();
-        miManagerProyectiles.Actualizar();
-    } 
+    // if (juegoEnPausa == false && juegoFinalizado == false){
+    //     escenaUIMobile.Actualizar();
+    //     miEscenaFondo.Actualizar();
+    //     miNave.Actualizar();
+    //     miManagerEnemigos.Actualizar();
+    //     miManagerExplosiones.Actualizar();
+    //     miManagerProyectiles.Actualizar();
+    // } 
     
     //Limpiar canvas
     miEscenaFondo.Dibujar();
