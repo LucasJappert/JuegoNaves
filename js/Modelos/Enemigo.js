@@ -9,7 +9,7 @@ class Enemigo extends NaveBase{
     Actualizar() {
         this.y += this.velocidad;
 
-        if (this.y > canvas.height + this.tamañoNave/2) this.eliminar = true;
+        if (this.y > canvas.height + this.tamañoNaveH/2) this.eliminar = true;
         
         super.Actualizar();
     }

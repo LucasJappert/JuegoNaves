@@ -58,11 +58,18 @@ function ReiniciarJuego() {
     juegoFinalizado = false;
     puntajeTotal = 0;
 }
+function FinalizarJuego(){
+    juegoFinalizado = true;
+}
+
+function MilisegundosEntreFechas(fecha1, fecha2){
+    return fecha1.getTime() - fecha2.getTime();
+}
 
 /**
  * Enum for common colors.
  * @readonly
- * @enum {{name: string, hex: string}}
+ * @enum {{tipo: string}}
  */
 const TipoObjeto = Object.freeze({
     Jugador: "Jugador",
@@ -72,5 +79,6 @@ const TipoObjeto = Object.freeze({
 export {
     RandomEntre,
     Colision, CargarImagen, PrecargarImagenes,
-    ReiniciarJuego, TipoObjeto
+    ReiniciarJuego, TipoObjeto, MilisegundosEntreFechas,
+    FinalizarJuego
 };
