@@ -41,7 +41,7 @@ async function PrecargarImagenes() {
     nombres.push("enemy6");
     nombres.push("roca");
     for (let i = 0; i < nombres.length; i++) {
-        const url = `JuegoNaves/imagenes/${nombres[i]}.png`;
+        const url = `./imagenes/${nombres[i]}.png`;
         let img = await CargarImagen(url);
         imagenes.push({
             src: nombres[i],
