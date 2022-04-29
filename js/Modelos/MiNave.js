@@ -3,7 +3,7 @@ import { Colision, TipoObjeto, MilisegundosEntreFechas } from "../Utilidades/Fun
 class MiNave extends NaveBase{
     constructor(vidaTotal, nombreImagenAvatar, x, y){
         super(vidaTotal, nombreImagenAvatar, x, y, false);
-        this.velocidadDisparo = 100;
+        this.velocidadDisparo = 500;
     }
 
     Actualizar(){
@@ -11,7 +11,7 @@ class MiNave extends NaveBase{
         ["a", "s", "d", "w"].forEach(key => {
             if (TeclasPresionadas.hasOwnProperty(key)) this.Mover(key);
         });
-        if (TeclasPresionadas.hasOwnProperty(" ")) this.Disparar();
+        this.Disparar();
         
         this.ChequearImpactoDeEnemigo();
 
