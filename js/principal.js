@@ -32,11 +32,11 @@ function Actualizar(timestamp) {
     miEscenaFondo.Dibujar();
 
     //DIBUJO MUNDO
-    miNave.Dibujar(); 
-    miManagerEnemigos.Dibujar();
-    miManagerExplosiones.Dibujar();
+    //miNave.Dibujar(); 
+    //miManagerEnemigos.Dibujar();
+    //miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar(timestamp);
-    miManagerProyectiles.Dibujar();
+    //miManagerProyectiles.Dibujar();
     escenaUIMobile.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
