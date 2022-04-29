@@ -16,22 +16,44 @@ import { ReiniciarJuego } from "../Utilidades/FuncionesUtiles.js";
 // canvas.addEventListener('touchend', released);
 let lastX, lastY = [canvas.width/2, canvas.height/2];
 let direccion = "";
+let mouseIsDown = false;
 canvas.onmousemove = function(e){
     // console.log(lastX, lastY);
     // console.log(e.clientX, e.clientY);
+    if (mouseIsDown == false) return;
+
+    TeclasPresionadas = {};
+    if(e.clientX > lastX) MoverDerecha();
+    if(e.clientX < lastX) MoverIzquierda();
+    if(e.clientY > lastY) MoverAbajo();
+    if(e.clientY < lastY) MoverArriba();
+    //console.log(TeclasPresionadas);
     lastX = e.clientX;
     lastY = e.clientY;
 }
-canvas.onmousedown = function(e){
-    dragOffset.x = e.x - mainLayer.trans.x;
-    dragOffset.y = e.y - mainLayer.trans.y;
-
+canvas.onmousedown = function(evento){
     mouseIsDown = true;
 }
 canvas.onmouseup = function(e){
-    if(mouseIsDown) mouseClick(e);
-
+    TeclasPresionadas = {};
     mouseIsDown = false;
+}
+
+function MoverDerecha(){
+    delete TeclasPresionadas["a"];
+    TeclasPresionadas["d"] = "d";
+}
+function MoverIzquierda(){
+    delete TeclasPresionadas["d"];
+    TeclasPresionadas["a"] = "a";
+}
+function MoverAbajo(){
+    delete TeclasPresionadas["w"];
+    TeclasPresionadas["s"] = "s";
+}
+function MoverArriba(){
+    delete TeclasPresionadas["s"];
+    TeclasPresionadas["w"] = "w";
 }
 
 // Set up touch events for mobile, etc

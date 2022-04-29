@@ -3,15 +3,24 @@ import { EscenaGameOver } from "./Escenas/EscenaGameOver.js";
 import { EscenaInterfaceUsuario } from "./Escenas/EscenaInterfaceUsuario.js";
 import { EscenaFondo } from "./Escenas/EscenaFondo.js";
 import { PrecargarImagenes, ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
+import { EscenaUIMobile } from "./Escenas/EscenaUIMobile.js";
 //#endregion
 
-var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario(ctx);
-var miEscenaFondo = new EscenaFondo(ctx);
-var miEscenaGameOver = new EscenaGameOver(ctx);
-const Actualizar = (timestamp) => {
+
+await PrecargarImagenes();
+ReiniciarJuego();
+requestAnimationFrame(Actualizar);
+
+
+var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
+var miEscenaFondo = new EscenaFondo();
+var miEscenaGameOver = new EscenaGameOver();
+var escenaUIMobile = new EscenaUIMobile();
+function Actualizar(timestamp) {
 
     //ACTUALIZO MUNDO
     if (juegoEnPausa == false && juegoFinalizado == false){
+        escenaUIMobile.Actualizar();
         miEscenaFondo.Actualizar();
         miNave.Actualizar();
         miManagerEnemigos.Actualizar();
@@ -28,16 +37,12 @@ const Actualizar = (timestamp) => {
     miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar(timestamp);
     miManagerProyectiles.Dibujar();
+    escenaUIMobile.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
     
     requestAnimationFrame(Actualizar);
 }
-//Actualizar();
-
-await PrecargarImagenes();
-ReiniciarJuego();
-requestAnimationFrame(Actualizar);
 
 
 

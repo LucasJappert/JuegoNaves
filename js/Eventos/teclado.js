@@ -1,9 +1,9 @@
-import { ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
+import { ReiniciarJuego } from "../Utilidades/FuncionesUtiles.js";
 
-// window.addEventListener('keydown', KeyDownDetectado);
-// window.addEventListener('keyup', KeyUpDetectado);
-// window.addEventListener('keypress', KeyPressDetectado);
-// canvas.addEventListener('mousedown', MouseDownDetectado);
+window.addEventListener('keydown', KeyDownDetectado);
+window.addEventListener('keyup', KeyUpDetectado);
+window.addEventListener('keypress', KeyPressDetectado);
+canvas.addEventListener('mousedown', MouseDownDetectado);
 
 function KeyDownDetectado(evento) {
     TeclasPresionadas[evento.key] = "";

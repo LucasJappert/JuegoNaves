@@ -31,15 +31,10 @@ const CargarImagen = path => {
 }
 
 async function PrecargarImagenes() {
-    let nombres = [];
-    nombres.push("minave");
-    nombres.push("enemy1");
-    nombres.push("enemy2");
-    nombres.push("enemy3");
-    nombres.push("enemy4");
-    nombres.push("enemy5");
-    nombres.push("enemy6");
-    nombres.push("roca");
+    let nombres = [
+        "minave", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5", "enemy6",
+        "roca", "circulo"
+    ];
     for (let i = 0; i < nombres.length; i++) {
         const url = `./imagenes/${nombres[i]}.png`;
         let img = await CargarImagen(url);
