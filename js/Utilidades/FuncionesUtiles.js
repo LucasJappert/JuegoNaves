@@ -39,6 +39,7 @@ async function PrecargarImagenes() {
     nombres.push("enemy4");
     nombres.push("enemy5");
     nombres.push("enemy6");
+    nombres.push("roca");
     for (let i = 0; i < nombres.length; i++) {
         const url = `../imagenes/${nombres[i]}.png`;
         let img = await CargarImagen(url);

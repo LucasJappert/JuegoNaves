@@ -6,7 +6,7 @@ export default class Explosion{
         // img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
         // this.image = img;
         this.eliminar = false;
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 30; i++) {
             let particula = new Particula(x, y);
             this.particulas.push(particula);
         }
@@ -35,12 +35,16 @@ class Particula{
         this.y = y;
         this.dx = RandomEntre(-2, 2);
         this.dy = RandomEntre(-2, 2);
-        this.scale = 1;
+        this.scale = RandomEntre(0.1, 0.3);
         this.opacity = 1;
         this.dOpacity = RandomEntre(0.94, 0.97);
         this.r = 255;
         this.g = 255;
         this.b = 255;
+        var imagen = imagenes.find(item => item.src == "roca");
+        this.image = imagen.img;
+        this.tamañoW = this.image.width * this.scale;
+        this.tamañoH = this.image.height * this.scale;
     }
     
     Actualizar(){
@@ -50,15 +54,28 @@ class Particula{
         this.opacity *= this.dOpacity;
         if (this.velocidad <= 0 || this.opacity <= 0.05) this.eliminar = true;
     }
-    Dibujar(){
-        this.color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`;
+    // Dibujar(){
+    //     this.color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`;
+    //     ctx.save();
+    //     ctx.beginPath();
+    //     ctx.fillStyle = this.color;
+    //     ctx.strokeStyle = this.color;
+    //     ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
+    //     ctx.fill();
+    //     ctx.stroke();
+    //     ctx.restore();
+    // }
+    Dibujar() {
+
+        //if (this.rotacion >= 360) this.rotacion = 0;
         ctx.save();
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.strokeStyle = this.color;
-        ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
-        ctx.fill();
-        ctx.stroke();
+        ctx.globalAlpha = this.velocidad;
+        ctx.setTransform(this.scale, 0, 0, this.scale, this.x, this.y); // sets scales and origin
+        //ctx.rotate(this.rotacion * Math.PI/180);
+        ctx.drawImage(this.image, -this.tamañoW, -this.tamañoH);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+
         ctx.restore();
+        //this.DibujarRectanguloFondo();
     }
 }
