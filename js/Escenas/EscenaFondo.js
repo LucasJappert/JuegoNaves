@@ -62,13 +62,13 @@ class Estrella{
     Dibujar(){
         this.color = `rgba(255, 255, 255, ${this.opacidad})`;
         //ctx.save();
-        ctx.beginPath();
-        ctx.shadowColor = this.color;
-        ctx.fillStyle = this.color;
-        ctx.shadowBlur = 7.5 * this.radio;
-        ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
-        ctx.fill();
-        ctx.stroke();
+        // ctx.beginPath();
+        // ctx.shadowColor = this.color;
+        // ctx.fillStyle = this.color;
+        // ctx.shadowBlur = 7.5 * this.radio;
+        // ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
+        // ctx.fill();
+        // ctx.stroke();
         //ctx.restore();
     }
 }

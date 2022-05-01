@@ -22,7 +22,7 @@ function Actualizar() {
     // if (juegoEnPausa == false && juegoFinalizado == false){
     //     escenaUIMobile.Actualizar();
          miEscenaFondo.Actualizar();
-    //     miNave.Actualizar();
+         miNave.Actualizar();
     //     miManagerEnemigos.Actualizar();
     //     miManagerExplosiones.Actualizar();
     //     miManagerProyectiles.Actualizar();
@@ -32,7 +32,7 @@ function Actualizar() {
     miEscenaFondo.Dibujar();
 
     //DIBUJO MUNDO
-    // miNave.Dibujar(); 
+     miNave.Dibujar(); 
     // miManagerEnemigos.Dibujar();
     // miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar();
