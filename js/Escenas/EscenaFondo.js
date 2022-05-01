@@ -3,7 +3,7 @@ import { RandomEntre } from "../Utilidades/FuncionesUtiles.js";
 class EscenaFondo{
     constructor(){
         this.estrellas = [];
-        let i = 50;
+        let i = 500;
         while(i--){
             this.estrellas.push(new Estrella());
         }
@@ -30,9 +30,18 @@ class EscenaFondo{
 
 class Estrella{
     constructor(){
-        this.x = RandomEntre(0, canvas.width);
-        this.y = RandomEntre(0, canvas.height);
-        this.velocidad = RandomEntre(0, 0.2);
+        var imagen = imagenes.find(item => item.src == "estrella");
+        this.image = imagen.img;
+        let tamaño = RandomEntre(5, 20);
+        this.centroX = RandomEntre(0, canvas.width);
+        this.centroY = RandomEntre(0, canvas.height);
+        this.rectArea = {
+            x: this.centroX - tamaño/2,
+            y: this.centroY - tamaño/2,
+            ancho: tamaño,
+            alto: tamaño
+        };
+        this.velocidad = RandomEntre(0, 2.2);
         this.radio = RandomEntre(0.5, 2);
         this.eliminar = false;
         this.opacidadInicial = RandomEntre(0.6, 0.9);
@@ -45,7 +54,7 @@ class Estrella{
         if(aux < 0) this.variacionOpacidad *= -1;
     }
     Actualizar(){
-        this.y += this.velocidad;
+        this.centroY += this.velocidad;
         this.variacionOpacidadActual += this.variacionOpacidad;
         if (this.variacionOpacidadActual > this.intervaloVariacionOpacidad){
             this.variacionOpacidad *= -1;
@@ -57,10 +66,14 @@ class Estrella{
         if (this.opacidad < 0.1) this.opacidad = 0.1;
         if (this.opacidad > 1) this.opacidad = 1;
 
-        if (this.y > canvas.height) this.y = 0;
+        if (this.centroY > canvas.height) this.centroY = 0;
+        this.rectArea.y = this.centroY - this.rectArea.ancho/2;
     }
     Dibujar(){
         this.color = `rgba(255, 255, 255, ${this.opacidad})`;
+        ctx.save();
+        ctx.drawImage(this.image, this.rectArea.x, this.rectArea.y, this.rectArea.ancho, this.rectArea.alto);
+        ctx.restore();
         //ctx.save();
         // ctx.beginPath();
         // ctx.shadowColor = this.color;

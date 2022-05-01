@@ -33,7 +33,7 @@ const CargarImagen = path => {
 async function PrecargarImagenes() {
     let nombres = [
         "minave", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5", "enemy6",
-        "roca", "circulo"
+        "roca", "circulo", "estrella"
     ];
     for (let i = 0; i < nombres.length; i++) {
         const url = `./imagenes/${nombres[i]}.png`;
