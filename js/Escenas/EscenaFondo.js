@@ -22,9 +22,9 @@ class EscenaFondo{
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
         
-        this.estrellas.forEach(estrella => {
-            estrella.Dibujar();
-        });
+        // this.estrellas.forEach(estrella => {
+        //     estrella.Dibujar();
+        // });
     }
 }
 

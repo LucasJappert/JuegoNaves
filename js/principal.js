@@ -7,41 +7,43 @@ import { EscenaUIMobile } from "./Escenas/EscenaUIMobile.js";
 //#endregion
 
 
-await PrecargarImagenes();
-ReiniciarJuego();
-requestAnimationFrame(Actualizar);
+//await PrecargarImagenes();
+//ReiniciarJuego();
+//requestAnimationFrame(Actualizar);
+        console.log(1000/60);
+setInterval(()=>{Actualizar()}, 1000/60);
 
 
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
 var miEscenaFondo = new EscenaFondo();
-var miEscenaGameOver = new EscenaGameOver();
-var escenaUIMobile = new EscenaUIMobile();
-function Actualizar(timestamp) {
+// var miEscenaGameOver = new EscenaGameOver();
+// var escenaUIMobile = new EscenaUIMobile();
+function Actualizar() {
 
     //ACTUALIZO MUNDO
     if (juegoEnPausa == false && juegoFinalizado == false){
-        escenaUIMobile.Actualizar();
+        //escenaUIMobile.Actualizar();
         miEscenaFondo.Actualizar();
-        miNave.Actualizar();
-        miManagerEnemigos.Actualizar();
-        miManagerExplosiones.Actualizar();
-        miManagerProyectiles.Actualizar();
+        // miNave.Actualizar();
+        // miManagerEnemigos.Actualizar();
+        // miManagerExplosiones.Actualizar();
+        // miManagerProyectiles.Actualizar();
     } 
     
     //Limpiar canvas
     miEscenaFondo.Dibujar();
 
     //DIBUJO MUNDO
-    miNave.Dibujar(); 
-    miManagerEnemigos.Dibujar();
-    miManagerExplosiones.Dibujar();
-    miEscenaInterfaceUsuario.Dibujar(timestamp);
-    miManagerProyectiles.Dibujar();
-    escenaUIMobile.Dibujar();
+    // miNave.Dibujar(); 
+    // miManagerEnemigos.Dibujar();
+    // miManagerExplosiones.Dibujar();
+    miEscenaInterfaceUsuario.Dibujar();
+    // miManagerProyectiles.Dibujar();
+    // escenaUIMobile.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
     
-    requestAnimationFrame(Actualizar);
+    //setTimeout(()=>{Actualizar()}, 1000/60);
 }
 
 
