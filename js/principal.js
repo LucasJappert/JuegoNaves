@@ -19,25 +19,25 @@ var escenaUIMobile = new EscenaUIMobile();
 function Actualizar() {
 
     //ACTUALIZO MUNDO
-    if (juegoEnPausa == false && juegoFinalizado == false){
-        escenaUIMobile.Actualizar();
-        miEscenaFondo.Actualizar();
-        miNave.Actualizar();
-        miManagerEnemigos.Actualizar();
-        miManagerExplosiones.Actualizar();
-        miManagerProyectiles.Actualizar();
-    } 
+    // if (juegoEnPausa == false && juegoFinalizado == false){
+    //     escenaUIMobile.Actualizar();
+    //     miEscenaFondo.Actualizar();
+    //     miNave.Actualizar();
+    //     miManagerEnemigos.Actualizar();
+    //     miManagerExplosiones.Actualizar();
+    //     miManagerProyectiles.Actualizar();
+    // } 
     
     //Limpiar canvas
     miEscenaFondo.Dibujar();
 
     //DIBUJO MUNDO
-    miNave.Dibujar(); 
-    miManagerEnemigos.Dibujar();
-    miManagerExplosiones.Dibujar();
+    // miNave.Dibujar(); 
+    // miManagerEnemigos.Dibujar();
+    // miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar();
-    miManagerProyectiles.Dibujar();
-    escenaUIMobile.Dibujar();
+    // miManagerProyectiles.Dibujar();
+    // escenaUIMobile.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
     
