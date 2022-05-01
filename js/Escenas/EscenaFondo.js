@@ -3,7 +3,7 @@ import { RandomEntre } from "../Utilidades/FuncionesUtiles.js";
 class EscenaFondo{
     constructor(){
         this.estrellas = [];
-        let i = 500;
+        let i = 50;
         while(i--){
             this.estrellas.push(new Estrella());
         }

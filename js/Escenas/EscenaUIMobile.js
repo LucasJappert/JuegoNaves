@@ -1,9 +1,12 @@
 class EscenaUIMobile{
     constructor(){
-        var imagen = imagenes.find(item => item.src == "circulo");
-        this.image = imagen.img;
-        this.circuloControlGrande = new Circulo(120, canvas.height - 120, 200, 200);
-        this.circuloControlChico = new Circulo(120, canvas.height - 120, 80, 80);
+        let tamañoCirculoGrande = 140;
+        let tamañoCirculoChico = 70;
+        let paddingCentro = tamañoCirculoGrande/2+10;
+        this.circuloControlGrande = new Circulo("circulo", paddingCentro, canvas.height - paddingCentro, 
+            tamañoCirculoGrande, tamañoCirculoGrande);
+        this.circuloControlChico = new Circulo("circuloChico", paddingCentro, canvas.height - paddingCentro, 
+            tamañoCirculoChico, tamañoCirculoChico);
     }
     Actualizar(){
         // this.x = this.ancho/2 + 20;
@@ -24,8 +27,8 @@ class EscenaUIMobile{
 }
 
 class Circulo{
-    constructor(centroX, centroY, ancho, alto){
-        var imagen = imagenes.find(item => item.src == "circulo");
+    constructor(imagen, centroX, centroY, ancho, alto){
+        var imagen = imagenes.find(item => item.src == imagen);
         this.image = imagen.img;
         this.centroX = centroX;
         this.centroY = centroY;
