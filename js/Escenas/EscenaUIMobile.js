@@ -35,7 +35,7 @@ class Circulo{
             ancho: ancho,
             alto: alto
         };
-        console.log(this.rectArea);
+        //console.log(this.rectArea);
         // this.scaleX = this.rectArea.ancho / this.image.width;
         // this.scaleY = this.rectArea.alto / this.image.height;
     }

@@ -12,14 +12,14 @@ class EscenaInterfaceUsuario {
             this.ultimaMedicionFPS = new Date();
         }
 
-        ctx.save();
+        //ctx.save();
         ctx.beginPath();
         ctx.fillStyle = 'white';
         ctx.font = "18px arial";
         ctx.fillText(`FPS: ${this.fps}`, 5, 20);
         ctx.fillText(`PUNTAJE: ${puntajeTotal}`, 5, 40);
         ctx.fillText(`VIDA ACTUAL: ${miNave.vidaActual}`, 5, 60);
-        ctx.restore();
+        //ctx.restore();
     }
 }
 export { EscenaInterfaceUsuario };
