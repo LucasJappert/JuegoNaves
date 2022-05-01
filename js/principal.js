@@ -21,7 +21,7 @@ function Actualizar() {
     //ACTUALIZO MUNDO
     // if (juegoEnPausa == false && juegoFinalizado == false){
     //     escenaUIMobile.Actualizar();
-    //     miEscenaFondo.Actualizar();
+         miEscenaFondo.Actualizar();
     //     miNave.Actualizar();
     //     miManagerEnemigos.Actualizar();
     //     miManagerExplosiones.Actualizar();

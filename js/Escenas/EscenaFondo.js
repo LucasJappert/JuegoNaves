@@ -22,9 +22,9 @@ class EscenaFondo{
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         //ctx.restore();
         
-        // this.estrellas.forEach(estrella => {
-        //     estrella.Dibujar();
-        // });
+        this.estrellas.forEach(estrella => {
+            estrella.Dibujar();
+        });
     }
 }
 
@@ -61,7 +61,7 @@ class Estrella{
     }
     Dibujar(){
         this.color = `rgba(255, 255, 255, ${this.opacidad})`;
-        ctx.save();
+        //ctx.save();
         ctx.beginPath();
         ctx.shadowColor = this.color;
         ctx.fillStyle = this.color;
@@ -69,7 +69,7 @@ class Estrella{
         ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
-        ctx.restore();
+        //ctx.restore();
     }
 }
 
