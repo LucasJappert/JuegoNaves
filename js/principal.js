@@ -9,14 +9,14 @@ import { EscenaUIMobile } from "./Escenas/EscenaUIMobile.js";
 
 await PrecargarImagenes();
 ReiniciarJuego();
-requestAnimationFrame(Actualizar);
+setInterval(() => Actualizar(), 1000/100);
 
 
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
 var miEscenaFondo = new EscenaFondo();
 var miEscenaGameOver = new EscenaGameOver();
 var escenaUIMobile = new EscenaUIMobile();
-function Actualizar(timestamp) {
+function Actualizar() {
 
     //ACTUALIZO MUNDO
     if (juegoEnPausa == false && juegoFinalizado == false){
@@ -35,13 +35,13 @@ function Actualizar(timestamp) {
     miNave.Dibujar(); 
     miManagerEnemigos.Dibujar();
     miManagerExplosiones.Dibujar();
-    miEscenaInterfaceUsuario.Dibujar(timestamp);
+    miEscenaInterfaceUsuario.Dibujar();
     miManagerProyectiles.Dibujar();
     escenaUIMobile.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
     
-    requestAnimationFrame(Actualizar);
+    //requestAnimationFrame(Actualizar);
 }
 
 

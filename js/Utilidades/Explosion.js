@@ -6,7 +6,7 @@ export default class Explosion{
         // img.src = `../imagenes/enemy${Math.floor(Math.random() * 6) + 1}.png`;
         // this.image = img;
         this.eliminar = false;
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 100; i++) {
             let particula = new Particula(x, y);
             this.particulas.push(particula);
         }

@@ -1,14 +1,16 @@
-class EscenaInterfaceUsuario{
-    constructor(){
-        this.fps;
-        this.times = [0];
+class EscenaInterfaceUsuario {
+    constructor() {
+        this.fps = 0;
+        this.contadorFPS = 0;
+        this.ultimaMedicionFPS = new Date();
     }
-    Dibujar(timestamp){
-        while (this.times.length > 0 && this.times[0] <= timestamp - 1000) {
-            this.times.shift();
+    Dibujar() {
+        this.contadorFPS += 1;
+        if (new Date().getTime() - this.ultimaMedicionFPS.getTime() > 1000) {
+            this.fps = this.contadorFPS;
+            this.contadorFPS = 0;
+            this.ultimaMedicionFPS = new Date();
         }
-        this.times.push(timestamp);
-        this.fps = this.times.length;
 
         ctx.save();
         ctx.beginPath();
@@ -20,4 +22,4 @@ class EscenaInterfaceUsuario{
         ctx.restore();
     }
 }
-export {EscenaInterfaceUsuario};
+export { EscenaInterfaceUsuario };
