@@ -9,7 +9,7 @@ import { EscenaUIMobile } from "./Escenas/EscenaUIMobile.js";
 
 await PrecargarImagenes();
 ReiniciarJuego();
-setInterval(() => Actualizar(), 1000 / 100);
+requestAnimationFrame(Actualizar);
 
 
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
@@ -41,7 +41,7 @@ function Actualizar() {
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
 
-    //requestAnimationFrame(Actualizar);
+    requestAnimationFrame(Actualizar);
 }
 
 
