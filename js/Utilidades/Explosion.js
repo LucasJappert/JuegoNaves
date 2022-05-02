@@ -1,5 +1,6 @@
 import { RandomEntre } from "./FuncionesUtiles.js";
 export default class Explosion{
+    
     constructor(x, y){
         this.particulas = [];
         // var img = new Image();
