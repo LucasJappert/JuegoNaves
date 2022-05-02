@@ -1,5 +1,6 @@
 class ComandosMobileIzquierda {
     constructor() {
+        this.TeclasPresionadas = {};
         let tamañoCirculoGrande = 140;
         let tamañoCirculoChico = 70;
         let paddingCentro = tamañoCirculoGrande / 2 + 10;
@@ -16,7 +17,7 @@ class ComandosMobileIzquierda {
 
             //console.log(e.touches);
             e.preventDefault();
-            if (this.PuntoDentroDeCirculoChico(e.touches[0].clientX, e.touches[0].clientY)){
+            if (this.PuntoDentroDeCirculoChico(e.touches[0].clientX, e.touches[0].clientY)) {
                 this.ciculoChicoPresionado = true;
             }
             // console.log(e.touches[0]); 
@@ -24,28 +25,67 @@ class ComandosMobileIzquierda {
         });
         canvas.addEventListener('touchmove', (e) => {
             if (!e.touches) return;
-            if(!this.ciculoChicoPresionado) return;
+            if (!this.ciculoChicoPresionado) return;
             this.punto2 = {
                 x: e.touches[0].clientX,
                 y: e.touches[0].clientY
             };
-            this.circuloControlChico.ActualizarPosicionSegunAngulo(this.AnguloEntre2Puntos(this.punto1, this.punto2));
+            let angulo = this.AnguloEntre2Puntos(this.punto1, this.punto2);
+            this.circuloControlChico.ActualizarPosicionSegunAngulo(angulo);
+            this.CalcularMovimientoSegunAngulo(angulo);
         });
         canvas.addEventListener('touchend', (e) => {
             this.ciculoChicoPresionado = false;
             this.circuloControlChico.ResetearPosicionInicial();
+            console.log(this.TeclasPresionadas);
+            this.TeclasPresionadas = {};
+            console.log(this.TeclasPresionadas);
         });
     }
-    AnguloEntre2Puntos(p1, p2){
+    CalcularMovimientoSegunAngulo(angulo) {
+        this.TeclasPresionadas = {};
+        if (angulo > -22.5 && angulo <= 22.5) {
+            this.TeclasPresionadas["d"] = "";
+        }
+        if (angulo > 22.5 && angulo <= 67.5) {
+            this.TeclasPresionadas["d"] = "";
+            this.TeclasPresionadas["s"] = "";
+        }
+        if (angulo > 67.5 && angulo <= 112.5) {
+            this.TeclasPresionadas["s"] = "";
+        }
+        if (angulo > 112.5 && angulo <= 157.5) {
+            this.TeclasPresionadas["s"] = "";
+            this.TeclasPresionadas["a"] = "";
+        }
+        if (angulo > 157.5 && angulo <= 180) {
+            this.TeclasPresionadas["a"] = "";
+        }
+        if (angulo >= -180 && angulo <= -157.5) {
+            this.TeclasPresionadas["a"] = "";
+        }
+        if (angulo >= -157 && angulo <= -112.5) {
+            this.TeclasPresionadas["a"] = "";
+            this.TeclasPresionadas["w"] = "";
+        }
+        if (angulo >= -112 && angulo <= -67.5) {
+            this.TeclasPresionadas["w"] = "";
+        }
+        if (angulo >= -67 && angulo <= -22.5) {
+            this.TeclasPresionadas["w"] = "";
+            this.TeclasPresionadas["d"] = "";
+        }
+    }
+    AnguloEntre2Puntos(p1, p2) {
 
         var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
         return angleDeg;
     }
-    PuntoDentroDeCirculoChico(x, y){
-        var distancesquared = (x 
-            - this.circuloControlChico.centroX) * (x - this.circuloControlChico.centroX) 
+    PuntoDentroDeCirculoChico(x, y) {
+        var distancesquared = (x
+            - this.circuloControlChico.centroX) * (x - this.circuloControlChico.centroX)
             + (y - this.circuloControlChico.centroY) * (y - this.circuloControlChico.centroY);
-        return distancesquared <= (this.circuloControlChico.ancho/2) ** 2;
+        return distancesquared <= (this.circuloControlChico.ancho / 2) ** 2;
     }
     Actualizar() {
         // this.x = this.ancho/2 + 20;
@@ -78,7 +118,7 @@ class Circulo {
     constructor(imagen, paddingCentro, ancho, alto) {
         this.ancho = ancho;
         this.alto = alto;
-        this.radio = this.ancho/2;
+        this.radio = this.ancho / 2;
         this.paddingCentro = paddingCentro;
         var imagen = imagenes.find(item => item.src == imagen);
         this.image = imagen.img;
@@ -87,7 +127,7 @@ class Circulo {
         // this.scaleX = this.rectArea.ancho / this.image.width;
         // this.scaleY = this.rectArea.alto / this.image.height;
     }
-    ResetearPosicionInicial(){
+    ResetearPosicionInicial() {
         this.varX = 0;
         this.varY = 0;
         this.RecalcularPosicion();
@@ -117,7 +157,7 @@ class Circulo {
       - Cuadrante 3: de 0 a 90
       - Cuadrante 4: de 90 a 180
      **/
-    ActualizarPosicionSegunAngulo(angulo){
+    ActualizarPosicionSegunAngulo(angulo) {
         this.varX = this.radio * Math.cos(angulo * Math.PI / 180);
         this.varY = this.radio * Math.sin(angulo * Math.PI / 180);
         this.RecalcularPosicion();
