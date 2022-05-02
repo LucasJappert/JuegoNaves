@@ -66,7 +66,11 @@ class Estrella{
         if (this.opacidad < 0.1) this.opacidad = 0.1;
         if (this.opacidad > 1) this.opacidad = 1;
 
-        if (this.centroY > canvas.height) this.centroY = 0;
+        if (this.centroY > canvas.height){
+            this.centroY = 0;
+            this.centroX = RandomEntre(0, canvas.width);
+            this.rectArea.x = this.centroX - this.rectArea.ancho/2;
+        } 
         this.rectArea.y = this.centroY - this.rectArea.ancho/2;
     }
     Dibujar(){

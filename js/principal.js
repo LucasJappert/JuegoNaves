@@ -3,7 +3,7 @@ import { EscenaGameOver } from "./Escenas/EscenaGameOver.js";
 import { EscenaInterfaceUsuario } from "./Escenas/EscenaInterfaceUsuario.js";
 import { EscenaFondo } from "./Escenas/EscenaFondo.js";
 import { PrecargarImagenes, ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
-import { EscenaUIMobile } from "./Escenas/EscenaUIMobile.js";
+import { ComandosMobileIzquierda } from "./Controles/ComandosMobileIzquierda.js";
 //#endregion
 
 
@@ -15,17 +15,20 @@ requestAnimationFrame(Actualizar);
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
 var miEscenaFondo = new EscenaFondo();
 var miEscenaGameOver = new EscenaGameOver();
-var escenaUIMobile = new EscenaUIMobile();
+comandosMobileIzquierda = new ComandosMobileIzquierda();
 function Actualizar() {
 
     //ACTUALIZO MUNDO
     if (juegoEnPausa == false && juegoFinalizado == false) {
-        escenaUIMobile.Actualizar();
+        comandosMobileIzquierda.Actualizar();
         miEscenaFondo.Actualizar();
         miNave.Actualizar();
         miManagerEnemigos.Actualizar();
         miManagerExplosiones.Actualizar();
         miManagerProyectiles.Actualizar();
+    }
+    if (canvasResized){
+        canvasResized = false;
     }
 
     //Limpiar canvas
@@ -37,7 +40,7 @@ function Actualizar() {
     miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar();
     miManagerProyectiles.Dibujar();
-    escenaUIMobile.Dibujar();
+    comandosMobileIzquierda.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
 

@@ -6,13 +6,13 @@ import { ReiniciarJuego } from "../Utilidades/FuncionesUtiles.js";
 // canvas.addEventListener('mousedown', MouseDownDetectado);
 
 // canvas.addEventListener('mousemove', CalcularDireccion());
-// canvas.addEventListener('touchmove', CalcularDireccion());
 
 
 //canvas.addEventListener('mousedown', CalcularDireccion());
 // canvas.addEventListener('mouseup', released);
 
 // canvas.addEventListener('touchstart', setPosition);
+// canvas.addEventListener('touchmove', CalcularDireccion());
 // canvas.addEventListener('touchend', released);
 let lastX, lastY = [canvas.width/2, canvas.height/2];
 let direccion = "";

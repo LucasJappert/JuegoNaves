@@ -10,10 +10,11 @@ var juegoFinalizado = false;
 var puntajeTotal = 0;
 
 var imagenes = [];
+var canvasResized = true;
 
 var miNave;
 var miManagerEnemigos;
 var miManagerExplosiones;
 var miManagerProyectiles;
-var nave1;
+var comandosMobileIzquierda;
 
