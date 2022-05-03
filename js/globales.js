@@ -16,5 +16,6 @@ var miNave;
 var miManagerEnemigos;
 var miManagerExplosiones;
 var miManagerProyectiles;
-var comandosMobileIzquierda;
+var controlesMobileIzquierda;
+var controlesDesktop;
 

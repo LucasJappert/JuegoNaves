@@ -1,5 +1,5 @@
 import { AnguloEntre2Puntos } from "../Utilidades/FuncionesUtiles.js";
-class ComandosMobileIzquierda {
+class ControlesMobileIzquierda {
     constructor() {
         this.TeclasPresionadas = {};
         let tamañoCirculoGrande = 140;
@@ -29,8 +29,7 @@ class ComandosMobileIzquierda {
         canvas.addEventListener('touchend', (e) => {
             this.circuloControlChico.SetearPresionado(false);
             this.circuloControlChico.ResetearPosicionInicial();
-            this.TeclasPresionadas = {};
-            miNave.SetearVelocidad2D(0, 0);
+            miNave.DetenerMovimiento();
         });
     }
     CalcularMovimientoSegunAngulo(angulo) {
@@ -139,7 +138,7 @@ class Circulo {
         }
         let angulo = AnguloEntre2Puntos(this.centroInicial, punto2);
         this.ActualizarPosicionSegunAngulo(angulo);
-        miNave.SetearVelocidad2D(this.varX/this.radio, this.varY/this.radio);
+        miNave.SetearVelocidadSegunAngulo(angulo);
     }
     CanvasResized() {
         this.RecalcularPosicion();
@@ -163,4 +162,4 @@ class Circulo {
     }
 }
 
-export { ComandosMobileIzquierda };
+export { ControlesMobileIzquierda };

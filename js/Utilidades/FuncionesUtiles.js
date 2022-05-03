@@ -65,22 +65,33 @@ function AnguloEntre2Puntos(p1, p2) {
     var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
     return angleDeg;
 }
+function Seno(angulo){
+    return Math.sin(angulo * Math.PI / 180).toFixed(2);
+}
+function Coseno(angulo){
+    return Math.cos(angulo * Math.PI / 180).toFixed(2);
+}
 
 const TipoObjeto = Object.freeze({
     Jugador: "Jugador",
     Enemigo: "Enemigo"
 });
 const Direccion = Object.freeze({
-    Arriba: ["w"],
-    ArribaDerecha: ["w", "d"],
-    Derecha: ["d"],
-    AbajoDerecha: ["s", "d"],
-    Abajo: ["s"],
+    Nula: null,
+    Arriba: -90,
+    ArribaDerecha: -45,
+    Derecha: 0,
+    AbajoDerecha: 45,
+    Abajo: 90,
+    AbajoIzquierda: 135,
+    Izquierda: 180,
+    ArribaIzquierda: -135,
 });
 
 export {
     RandomEntre,
     Colision, CargarImagen, PrecargarImagenes,
     ReiniciarJuego, TipoObjeto, MilisegundosEntreFechas,
-    FinalizarJuego, Direccion, AnguloEntre2Puntos
+    FinalizarJuego, Direccion, AnguloEntre2Puntos,
+    Seno, Coseno
 };

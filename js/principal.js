@@ -3,7 +3,8 @@ import { EscenaGameOver } from "./Escenas/EscenaGameOver.js";
 import { EscenaInterfaceUsuario } from "./Escenas/EscenaInterfaceUsuario.js";
 import { EscenaFondo } from "./Escenas/EscenaFondo.js";
 import { PrecargarImagenes, ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
-import { ComandosMobileIzquierda } from "./Controles/ComandosMobileIzquierda.js";
+import { ControlesMobileIzquierda } from "./Controles/ControlesMobileIzquierda.js";
+import { ControlesDesktop } from "./Controles/ControlesDesktop.js";
 //#endregion
 
 
@@ -18,21 +19,9 @@ requestAnimationFrame(Dibujar);
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
 var miEscenaFondo = new EscenaFondo();
 var miEscenaGameOver = new EscenaGameOver();
-comandosMobileIzquierda = new ComandosMobileIzquierda();
+controlesMobileIzquierda = new ControlesMobileIzquierda();
+controlesDesktop = new ControlesDesktop();
 function Dibujar() {
-
-    //ACTUALIZO MUNDO
-    // if (juegoEnPausa == false && juegoFinalizado == false) {
-    //     comandosMobileIzquierda.Actualizar();
-    //     miEscenaFondo.Actualizar();
-    //     miNave.Actualizar();
-    //     miManagerEnemigos.Actualizar();
-    //     miManagerExplosiones.Actualizar();
-    //     miManagerProyectiles.Actualizar();
-    // }
-    // if (canvasResized) {
-    //     canvasResized = false;
-    // }
 
     //Limpiar canvas
     miEscenaFondo.Dibujar();
@@ -43,7 +32,7 @@ function Dibujar() {
     miManagerExplosiones.Dibujar();
     miEscenaInterfaceUsuario.Dibujar();
     miManagerProyectiles.Dibujar();
-    comandosMobileIzquierda.Dibujar();
+    controlesMobileIzquierda.Dibujar();
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
 
@@ -52,7 +41,8 @@ function Dibujar() {
 const Actualizar = () => {
     //ACTUALIZO MUNDO
     if (juegoEnPausa == false && juegoFinalizado == false) {
-        comandosMobileIzquierda.Actualizar();
+        controlesDesktop.Actualizar();
+        controlesMobileIzquierda.Actualizar();
         miEscenaFondo.Actualizar();
         miNave.Actualizar();
         miManagerEnemigos.Actualizar();
