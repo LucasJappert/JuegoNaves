@@ -7,6 +7,7 @@ class MiNave extends NaveBase {
     }
 
     Actualizar() {
+        this.MoverMobile();
         ["a", "s", "d", "w"].forEach(key => {
             if (TeclasPresionadas.hasOwnProperty(key)) this.Mover(key);
             if (comandosMobileIzquierda.TeclasPresionadas.hasOwnProperty(key)) this.Mover(key);
@@ -40,15 +41,26 @@ class MiNave extends NaveBase {
     }
 
     Mover(tecla) {
-        if (tecla == "w") this.y -= this.velocidad;
-        if (tecla == "s") this.y += this.velocidad;
-        if (tecla == "a") this.x -= this.velocidad;
-        if (tecla == "d") this.x += this.velocidad;
-
+        if (tecla == "w") this.y -= this.velocidadY;
+        if (tecla == "s") this.y += this.velocidadY;
+        if (tecla == "a") this.x -= this.velocidadX;
+        if (tecla == "d") this.x += this.velocidadX;
+        this.ControlesPostMover();
+    }
+    MoverMobile(){
+        this.y += this.velocidadY;
+        this.x += this.velocidadX;
+    }
+    ControlesPostMover(){
         if (this.x > canvas.width - this.tamañoNaveW / 2) this.x = canvas.width - this.tamañoNaveW / 2;
         if (this.x < this.tamañoNaveW / 2) this.x = this.tamañoNaveW / 2;
         if (this.y > canvas.height - this.tamañoNaveH / 2) this.y = canvas.height - this.tamañoNaveH / 2;
         if (this.y < this.tamañoNaveH / 2) this.y = this.tamañoNaveH / 2;
+    }
+    SetearVelocidad2D(porcentajeX, porcentajeY){
+        this.velocidadX = this.velocidad * porcentajeX;
+        this.velocidadY = this.velocidad * porcentajeY;
+        //console.log(this.velocidadX, this.velocidadY);
     }
 }
 

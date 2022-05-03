@@ -9,27 +9,30 @@ import { ComandosMobileIzquierda } from "./Controles/ComandosMobileIzquierda.js"
 
 await PrecargarImagenes();
 ReiniciarJuego();
-requestAnimationFrame(Actualizar);
+setInterval(() => {
+    Actualizar()
+}, 1000 / 75);
+requestAnimationFrame(Dibujar);
 
 
 var miEscenaInterfaceUsuario = new EscenaInterfaceUsuario();
 var miEscenaFondo = new EscenaFondo();
 var miEscenaGameOver = new EscenaGameOver();
 comandosMobileIzquierda = new ComandosMobileIzquierda();
-function Actualizar() {
+function Dibujar() {
 
     //ACTUALIZO MUNDO
-    if (juegoEnPausa == false && juegoFinalizado == false) {
-        comandosMobileIzquierda.Actualizar();
-        miEscenaFondo.Actualizar();
-        miNave.Actualizar();
-        miManagerEnemigos.Actualizar();
-        miManagerExplosiones.Actualizar();
-        miManagerProyectiles.Actualizar();
-    }
-    if (canvasResized){
-        canvasResized = false;
-    }
+    // if (juegoEnPausa == false && juegoFinalizado == false) {
+    //     comandosMobileIzquierda.Actualizar();
+    //     miEscenaFondo.Actualizar();
+    //     miNave.Actualizar();
+    //     miManagerEnemigos.Actualizar();
+    //     miManagerExplosiones.Actualizar();
+    //     miManagerProyectiles.Actualizar();
+    // }
+    // if (canvasResized) {
+    //     canvasResized = false;
+    // }
 
     //Limpiar canvas
     miEscenaFondo.Dibujar();
@@ -44,8 +47,22 @@ function Actualizar() {
 
     if (juegoFinalizado) miEscenaGameOver.Dibujar();
 
-    requestAnimationFrame(Actualizar);
+    requestAnimationFrame(Dibujar);
 }
+const Actualizar = () => {
+    //ACTUALIZO MUNDO
+    if (juegoEnPausa == false && juegoFinalizado == false) {
+        comandosMobileIzquierda.Actualizar();
+        miEscenaFondo.Actualizar();
+        miNave.Actualizar();
+        miManagerEnemigos.Actualizar();
+        miManagerExplosiones.Actualizar();
+        miManagerProyectiles.Actualizar();
+    }
+    if (canvasResized) {
+        canvasResized = false;
+    }
+};
 
 
 

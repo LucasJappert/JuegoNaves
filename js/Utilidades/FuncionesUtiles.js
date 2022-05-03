@@ -61,20 +61,26 @@ function FinalizarJuego(){
 function MilisegundosEntreFechas(fecha1, fecha2){
     return fecha1.getTime() - fecha2.getTime();
 }
+function AnguloEntre2Puntos(p1, p2) {
+    var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+    return angleDeg;
+}
 
-/**
- * Enum for common colors.
- * @readonly
- * @enum {{tipo: string}}
- */
 const TipoObjeto = Object.freeze({
     Jugador: "Jugador",
     Enemigo: "Enemigo"
+});
+const Direccion = Object.freeze({
+    Arriba: ["w"],
+    ArribaDerecha: ["w", "d"],
+    Derecha: ["d"],
+    AbajoDerecha: ["s", "d"],
+    Abajo: ["s"],
 });
 
 export {
     RandomEntre,
     Colision, CargarImagen, PrecargarImagenes,
     ReiniciarJuego, TipoObjeto, MilisegundosEntreFechas,
-    FinalizarJuego
+    FinalizarJuego, Direccion, AnguloEntre2Puntos
 };

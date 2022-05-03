@@ -5,7 +5,9 @@ class NaveBase {
         this.vidaActual = vidaTotal;
         this.x = x;
         this.y = y;
-        this.velocidad = 5;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
+        this.velocidad = 4;
         this.scale = 0.5;
         this.rotacion = 0;
         this.ultimoDisparo = new Date();
