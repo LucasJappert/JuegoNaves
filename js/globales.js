@@ -6,6 +6,7 @@ canvas.height = innerHeight;
 var ctx = canvas.getContext("2d");
 var limiteEnemigos = 10;
 var juegoEnPausa = false;
+var juegoEnFoco = true;
 var juegoFinalizado = false;
 var puntajeTotal = 0;
 

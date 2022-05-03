@@ -3,7 +3,7 @@ import { Colision, TipoObjeto, MilisegundosEntreFechas, Seno, Coseno } from "../
 class MiNave extends NaveBase {
     constructor(vidaTotal, nombreImagenAvatar, x, y) {
         super(vidaTotal, nombreImagenAvatar, x, y, false);
-        this.velocidadDisparo = 500;
+        this.velocidadDisparo = 300;
     }
 
     Actualizar() {

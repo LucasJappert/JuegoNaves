@@ -10,7 +10,6 @@ class NaveBase {
         this.velocidad = 4;
         this.scale = 0.5;
         this.rotacion = 0;
-        this.ultimoDisparo = new Date();
         this.velocidadDisparo = 100;
         this.esEnemigo = esEnemigo;
         this.nombreImagenAvatar = nombreImagenAvatar;
@@ -24,11 +23,11 @@ class NaveBase {
         this.rectArea = {
             x: areaX,
             y: areaY,
-            w: this.tamañoNaveW,
-            h: this.tamañoNaveH
+            ancho: this.tamañoNaveW,
+            alto: this.tamañoNaveH
         };
         this.eliminar = false;
-        this.ultimoDisparo = new Date();
+        this.ultimoDisparo = new Date(0);
         this.ultimoDañoRecibido = new Date(0);
         this.velocidadDisparo = 100;
     }
@@ -53,7 +52,7 @@ class NaveBase {
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
+        ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.ancho, this.rectArea.alto);
         ctx.stroke();
         ctx.restore();
     }

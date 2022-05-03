@@ -40,7 +40,7 @@ function Dibujar() {
 }
 const Actualizar = () => {
     //ACTUALIZO MUNDO
-    if (juegoEnPausa == false && juegoFinalizado == false) {
+    if (juegoEnPausa == false && juegoEnFoco && juegoFinalizado == false) {
         controlesDesktop.Actualizar();
         controlesMobileIzquierda.Actualizar();
         miEscenaFondo.Actualizar();

@@ -7,10 +7,10 @@ const RandomEntre = (min, max) => {
     return min + Math.random() * (max - min);
 }
 const Colision = (rect1, rect2) => {
-    if (rect1.x < rect2.x + rect2.w &&
-        rect1.x + rect1.w > rect2.x &&
-        rect1.y < rect2.y + rect2.h &&
-        rect1.h + rect1.y > rect2.y) {
+    if (rect1.x < rect2.x + rect2.ancho &&
+        rect1.x + rect1.ancho > rect2.x &&
+        rect1.y < rect2.y + rect2.alto &&
+        rect1.alto + rect1.y > rect2.y) {
         return true;
     }
 
@@ -33,7 +33,7 @@ const CargarImagen = path => {
 async function PrecargarImagenes() {
     let nombres = [
         "minave", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5", "enemy6",
-        "roca", "circulo", "circuloChico", "estrella"
+        "roca", "circulo", "circuloChico", "estrella", "proyectil1"
     ];
     for (let i = 0; i < nombres.length; i++) {
         const url = `./imagenes/${nombres[i]}.png`;
