@@ -1,54 +1,66 @@
 import { NaveBase } from "./NaveBase.js";
-import { Colision, TipoObjeto, MilisegundosEntreFechas } from "../Utilidades/FuncionesUtiles.js";
-class MiNave extends NaveBase{
-    constructor(vidaTotal, nombreImagenAvatar, x, y){
+import { Colision, TipoObjeto, MilisegundosEntreFechas, Seno
+    , Coseno, TipoProyectiles } from "../Utilidades/FuncionesUtiles.js";
+class MiNave extends NaveBase {
+    constructor(vidaTotal, nombreImagenAvatar, x, y) {
         super(vidaTotal, nombreImagenAvatar, x, y, false);
-        this.velocidadDisparo = 100;
+        this.velocidad = 3;
+        this.velocidadDisparo = 300;
+        this.tipoProyectil = TipoProyectiles.Proyectil2;
     }
 
-    Actualizar(){
+    Actualizar() {
+        this.ActualizarPosicion();
 
-        ["a", "s", "d", "w"].forEach(key => {
-            if (TeclasPresionadas.hasOwnProperty(key)) this.Mover(key);
-        });
-        if (TeclasPresionadas.hasOwnProperty(" ")) this.Disparar();
-        
+        this.Disparar();
+
         this.ChequearImpactoDeEnemigo();
 
         super.Actualizar();
     }
-    Dibujar(){
+    Dibujar() {
         super.DibujarAvatar();
     }
-    
-    ChequearImpactoDeEnemigo(){
+
+    ChequearImpactoDeEnemigo() {
         let enemigoMasCercano = miManagerEnemigos.ObtenerEnemigoMasCercano(this.x, this.y);
-        if (enemigoMasCercano != null){
-            if (Colision(this.rectArea, enemigoMasCercano.rectArea)){
+        if (enemigoMasCercano != null) {
+            if (Colision(this.rectArea, enemigoMasCercano.rectArea)) {
                 enemigoMasCercano.Destruir();
                 this.ModificarVida(-enemigoMasCercano.dañoPorColision);
             }
         }
     }
 
-    Disparar(){
+    Disparar() {
         let milisegundos = MilisegundosEntreFechas(new Date(), this.ultimoDisparo);
         if (milisegundos < this.velocidadDisparo) return;
-
-        this.ultimoDisparo = new Date();
-        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNaveH/2, TipoObjeto.Jugador);
-    }
-
-    Mover(tecla){
-        if (tecla == "w") this.y -= this.velocidad;
-        if (tecla == "s") this.y += this.velocidad;
-        if (tecla == "a") this.x -= this.velocidad;
-        if (tecla == "d") this.x += this.velocidad;
         
-        if (this.x > canvas.width - this.tamañoNaveW/2) this.x = canvas.width - this.tamañoNaveW/2;
-        if (this.x < this.tamañoNaveW/2) this.x = this.tamañoNaveW/2;
-        if (this.y > canvas.height - this.tamañoNaveH/2) this.y = canvas.height - this.tamañoNaveH/2;
-        if (this.y < this.tamañoNaveH/2) this.y = this.tamañoNaveH/2;
+        this.ultimoDisparo = new Date();
+        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+        miManagerProyectiles.AgregarProyectil(this.x - 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+        miManagerProyectiles.AgregarProyectil(this.x + 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+    }
+    ActualizarPosicion(){
+        this.x += this.velocidadX;
+        this.y += this.velocidadY;
+        this.ControlesPostMover();
+    }
+    ControlesPostMover(){
+        if (this.x > canvas.width - this.tamañoNaveW / 2) this.x = canvas.width - this.tamañoNaveW / 2;
+        if (this.x < this.tamañoNaveW / 2) this.x = this.tamañoNaveW / 2;
+        if (this.y > canvas.height - this.tamañoNaveH / 2) this.y = canvas.height - this.tamañoNaveH / 2;
+        if (this.y < this.tamañoNaveH / 2) this.y = this.tamañoNaveH / 2;
+    }
+    DetenerMovimiento(){
+        this.velocidadX = 0;
+        this.velocidadY = 0;
+    }
+    SetearVelocidadSegunAngulo(angulo){
+        let porcentajeX = Coseno(angulo)/1;
+        let porcentajeY = Seno(angulo)/1;
+        this.velocidadX = this.velocidad * porcentajeX;
+        this.velocidadY = this.velocidad * porcentajeY;
     }
 }
 

@@ -1,14 +1,16 @@
-import { MilisegundosEntreFechas, FinalizarJuego } from "../Utilidades/FuncionesUtiles.js";
+import { MilisegundosEntreFechas, FinalizarJuego, TipoProyectiles } from "../Utilidades/FuncionesUtiles.js";
 class NaveBase {
     constructor(vidaTotal, nombreImagenAvatar, x, y, esEnemigo) {
+        this.tipoProyectil = TipoProyectiles.Proyectil1;
         this.vidaTotal = vidaTotal;
         this.vidaActual = vidaTotal;
         this.x = x;
         this.y = y;
-        this.velocidad = 5;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
+        this.velocidad = 4;
         this.scale = 0.5;
         this.rotacion = 0;
-        this.ultimoDisparo = new Date();
         this.velocidadDisparo = 100;
         this.esEnemigo = esEnemigo;
         this.nombreImagenAvatar = nombreImagenAvatar;
@@ -22,11 +24,11 @@ class NaveBase {
         this.rectArea = {
             x: areaX,
             y: areaY,
-            w: this.tamañoNaveW,
-            h: this.tamañoNaveH
+            ancho: this.tamañoNaveW,
+            alto: this.tamañoNaveH
         };
         this.eliminar = false;
-        this.ultimoDisparo = new Date();
+        this.ultimoDisparo = new Date(0);
         this.ultimoDañoRecibido = new Date(0);
         this.velocidadDisparo = 100;
     }
@@ -51,13 +53,14 @@ class NaveBase {
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.w, this.rectArea.h);
+        ctx.fillRect(this.rectArea.x, this.rectArea.y, this.rectArea.ancho, this.rectArea.alto);
         ctx.stroke();
         ctx.restore();
     }
     DibujarBarraVida() {
         let milisegundos = MilisegundosEntreFechas(new Date(), this.ultimoDañoRecibido);
         if (milisegundos > 4000) return;
+        
         let altoBarraVida = 2;
         let paddingBarraVida = 2;
         let porcentajeVida = this.vidaActual / this.vidaTotal;
