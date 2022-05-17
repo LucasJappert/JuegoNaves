@@ -29,4 +29,4 @@ class Enemigo extends NaveBase{
     }
 }
 
-export { Enemigo }; 
+export { Enemigo };
