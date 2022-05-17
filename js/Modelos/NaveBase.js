@@ -1,6 +1,7 @@
-import { MilisegundosEntreFechas, FinalizarJuego } from "../Utilidades/FuncionesUtiles.js";
+import { MilisegundosEntreFechas, FinalizarJuego, TipoProyectiles } from "../Utilidades/FuncionesUtiles.js";
 class NaveBase {
     constructor(vidaTotal, nombreImagenAvatar, x, y, esEnemigo) {
+        this.tipoProyectil = TipoProyectiles.Proyectil1;
         this.vidaTotal = vidaTotal;
         this.vidaActual = vidaTotal;
         this.x = x;
@@ -59,6 +60,7 @@ class NaveBase {
     DibujarBarraVida() {
         let milisegundos = MilisegundosEntreFechas(new Date(), this.ultimoDañoRecibido);
         if (milisegundos > 4000) return;
+        
         let altoBarraVida = 2;
         let paddingBarraVida = 2;
         let porcentajeVida = this.vidaActual / this.vidaTotal;

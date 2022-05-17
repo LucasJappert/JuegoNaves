@@ -12,7 +12,7 @@ await PrecargarImagenes();
 ReiniciarJuego();
 setInterval(() => {
     Actualizar()
-}, 1000 / 75);
+}, 1000/75);
 requestAnimationFrame(Dibujar);
 
 

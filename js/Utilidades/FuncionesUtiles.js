@@ -33,7 +33,7 @@ const CargarImagen = path => {
 async function PrecargarImagenes() {
     let nombres = [
         "minave", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5", "enemy6",
-        "roca", "circulo", "circuloChico", "estrella", "proyectil1"
+        "roca", "circulo", "circuloChico", "estrella", "proyectil1", "proyectil2"
     ];
     for (let i = 0; i < nombres.length; i++) {
         const url = `./imagenes/${nombres[i]}.png`;
@@ -65,11 +65,11 @@ function AnguloEntre2Puntos(p1, p2) {
     var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
     return angleDeg;
 }
-function Seno(angulo){
-    return Math.sin(angulo * Math.PI / 180).toFixed(2);
+function Seno(anguloEnGrados){
+    return Math.sin(anguloEnGrados * Math.PI / 180).toFixed(2);
 }
-function Coseno(angulo){
-    return Math.cos(angulo * Math.PI / 180).toFixed(2);
+function Coseno(anguloEnGrados){
+    return Math.cos(anguloEnGrados * Math.PI / 180).toFixed(2);
 }
 
 const TipoObjeto = Object.freeze({
@@ -87,11 +87,15 @@ const Direccion = Object.freeze({
     Izquierda: 180,
     ArribaIzquierda: -135,
 });
+const TipoProyectiles = {
+    Proyectil1: "proyectil1",
+    Proyectil2: "proyectil2"
+};
 
 export {
     RandomEntre,
     Colision, CargarImagen, PrecargarImagenes,
     ReiniciarJuego, TipoObjeto, MilisegundosEntreFechas,
     FinalizarJuego, Direccion, AnguloEntre2Puntos,
-    Seno, Coseno
+    Seno, Coseno, TipoProyectiles
 };

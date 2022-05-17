@@ -1,7 +1,7 @@
-import { Colision, TipoObjeto } from "./FuncionesUtiles.js";
+import { Colision, TipoObjeto } from "../Utilidades/FuncionesUtiles.js";
 export default class Proyectil {
-    constructor(x, y, disparadoPor) {
-        var imagen = imagenes.find(item => item.src == "proyectil1");
+    constructor(x, y, disparadoPor, tipoProyectil) {
+        var imagen = imagenes.find(item => item.src == tipoProyectil);
         this.image = imagen.img;
         let ancho = 20;
         this.scale = ancho / this.image.width;
@@ -14,7 +14,7 @@ export default class Proyectil {
         this.rotacion = 0;
 
         this.velocidadX = 0;
-        this.velocidadY = -10;
+        this.velocidadY = -5;
         this.eliminar = false;
         this.disparadoPor = disparadoPor;
         this.daño = 40;
@@ -46,6 +46,12 @@ export default class Proyectil {
 
         ctx.restore();
     }
+    // SetearVelocidadesXeY(distanciaX, distanciaY){
+    //     let porcentajeX = Coseno(angulo)/1;
+    //     let porcentajeY = Seno(angulo)/1;
+    //     this.velocidadX = this.velocidad * porcentajeX;
+    //     this.velocidadY = this.velocidad * porcentajeY;
+    // }
     ChequearImpactoSobreEnemigo() {
         let enemigoMasCercano = miManagerEnemigos.ObtenerEnemigoMasCercano(this.x, this.y);
         if (enemigoMasCercano != null) {
