@@ -1,4 +1,4 @@
-import { AnguloEntre2Puntos } from "../Utilidades/FuncionesUtiles.js";
+import { AnguloEntre2Puntos } from "../Infraestructura/FuncionesUtiles.js";
 class ControlesMobileIzquierda {
     constructor() {
         this.TeclasPresionadas = {};

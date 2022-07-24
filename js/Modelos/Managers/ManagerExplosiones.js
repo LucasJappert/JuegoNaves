@@ -1,4 +1,4 @@
-import Explosion from "./Explosion.js";
+import Explosion from "../Explosion.js";
 export default class ManagerExplosiones{
     constructor(){
         this.explosiones = [];

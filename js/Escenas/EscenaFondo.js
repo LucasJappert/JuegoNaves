@@ -1,4 +1,4 @@
-import { RandomEntre } from "../Utilidades/FuncionesUtiles.js";
+import { RandomEntre } from "../Infraestructura/FuncionesUtiles.js";
 
 class EscenaFondo{
     constructor(){

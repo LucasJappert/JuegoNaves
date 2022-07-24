@@ -1,4 +1,5 @@
-import { ReiniciarJuego } from "../Utilidades/FuncionesUtiles.js";
+//TODO: Borrar, ya no se usa
+import { ReiniciarJuego } from "../Infraestructura/FuncionesUtiles.js";
 
 // window.addEventListener('keydown', KeyDownDetectado);
 // window.addEventListener('keyup', KeyUpDetectado);

@@ -1,4 +1,4 @@
-import { RandomEntre } from "./FuncionesUtiles.js";
+import { RandomEntre } from "../Infraestructura/FuncionesUtiles.js";
 export default class Explosion{
     
     constructor(x, y){

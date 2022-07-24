@@ -1,7 +1,9 @@
-import { MilisegundosEntreFechas, FinalizarJuego, TipoProyectiles } from "../Utilidades/FuncionesUtiles.js";
+import { MilisegundosEntreFechas, FinalizarJuego, TipoObjeto } 
+    from "../Infraestructura/FuncionesUtiles.js";
+import { TiposProyectiles } from "../Infraestructura/Enums.js";
 class NaveBase {
     constructor(vidaTotal, nombreImagenAvatar, x, y, esEnemigo) {
-        this.tipoProyectil = TipoProyectiles.Proyectil1;
+        this.tipoProyectil = null;
         this.vidaTotal = vidaTotal;
         this.vidaActual = vidaTotal;
         this.x = x;
@@ -94,6 +96,29 @@ class NaveBase {
             }
         } 
         if (this.vidaActual > this.vidaTotal) this.vidaActual = vidaTotal;
+    }
+    Disparar() {
+        if (this.tipoProyectil == null) return;
+
+        let milisegundos = MilisegundosEntreFechas(new Date(), this.ultimoDisparo);
+        if (milisegundos < this.tipoProyectil.intervaloDisparo) return;
+        
+        this.ultimoDisparo = new Date();
+
+        if (this.tipoProyectil.id == TiposProyectiles[1].id){
+            this.EjecutarDisparo1();
+        }
+        if (this.tipoProyectil.id == TiposProyectiles[2].id){
+            this.EjecutarDisparo2();
+        }
+    }
+    EjecutarDisparo1(){
+        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+    }
+    EjecutarDisparo2(){
+        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+        miManagerProyectiles.AgregarProyectil(this.x - 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
+        miManagerProyectiles.AgregarProyectil(this.x + 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
     }
 }
 

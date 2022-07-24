@@ -1,12 +1,12 @@
 import { NaveBase } from "./NaveBase.js";
-import { Colision, TipoObjeto, MilisegundosEntreFechas, Seno
-    , Coseno, TipoProyectiles } from "../Utilidades/FuncionesUtiles.js";
+import { Colision, Seno, Coseno } from "../Infraestructura/FuncionesUtiles.js";
+import { TiposProyectiles, TipoProyectil } from "../Infraestructura/Enums.js";
 class MiNave extends NaveBase {
     constructor(vidaTotal, nombreImagenAvatar, x, y) {
         super(vidaTotal, nombreImagenAvatar, x, y, false);
         this.velocidad = 3;
-        this.velocidadDisparo = 300;
-        this.tipoProyectil = TipoProyectiles.Proyectil2;
+        this.velocidadDisparo = 10;
+        this.tipoProyectil = {...TiposProyectiles[TipoProyectil.Misilesx3]};
     }
 
     Actualizar() {
@@ -30,16 +30,6 @@ class MiNave extends NaveBase {
                 this.ModificarVida(-enemigoMasCercano.dañoPorColision);
             }
         }
-    }
-
-    Disparar() {
-        let milisegundos = MilisegundosEntreFechas(new Date(), this.ultimoDisparo);
-        if (milisegundos < this.velocidadDisparo) return;
-        
-        this.ultimoDisparo = new Date();
-        miManagerProyectiles.AgregarProyectil(this.x, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
-        miManagerProyectiles.AgregarProyectil(this.x - 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
-        miManagerProyectiles.AgregarProyectil(this.x + 20, this.y - this.tamañoNaveH / 2, TipoObjeto.Jugador, this.tipoProyectil);
     }
     ActualizarPosicion(){
         this.x += this.velocidadX;

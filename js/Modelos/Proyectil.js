@@ -1,9 +1,9 @@
-import { Colision, TipoObjeto } from "../Utilidades/FuncionesUtiles.js";
+import { Colision, TipoObjeto } from "../Infraestructura/FuncionesUtiles.js";
 export default class Proyectil {
-    constructor(x, y, disparadoPor, tipoProyectil) {
-        var imagen = imagenes.find(item => item.src == tipoProyectil);
+    constructor(x, y, objectoCaster, tipoProyectil) {
+        var imagen = imagenes.find(item => item.src == tipoProyectil.nombreImagen);
         this.image = imagen.img;
-        let ancho = 20;
+        let ancho = tipoProyectil.anchoImagen;
         this.scale = ancho / this.image.width;
         this.tamañoX = ancho;
         this.tamañoY = Math.round((this.image.height * this.scale).toFixed(2));
@@ -13,11 +13,11 @@ export default class Proyectil {
         this.y = y;
         this.rotacion = 0;
 
-        this.velocidadX = 0;
-        this.velocidadY = -5;
+        this.velocidadX = tipoProyectil.velocidad.x;
+        this.velocidadY = tipoProyectil.velocidad.y;
         this.eliminar = false;
-        this.disparadoPor = disparadoPor;
-        this.daño = 40;
+        this.objectoCaster = objectoCaster;
+        this.daño = tipoProyectil.dañoProvocado;
         this.Actualizar();
     }
     Actualizar() {
@@ -31,7 +31,7 @@ export default class Proyectil {
         };
 
         if (this.y < 0) this.eliminar = true;
-        if (this.disparadoPor = TipoObjeto.Jugador) {
+        if (this.objectoCaster = TipoObjeto.Jugador) {
             this.ChequearImpactoSobreEnemigo();
         }
     }

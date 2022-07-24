@@ -1,4 +1,4 @@
-import { ReiniciarJuego, Direccion } from "../Utilidades/FuncionesUtiles.js";
+import { ReiniciarJuego, Direccion } from "../Infraestructura/FuncionesUtiles.js";
 class ControlesDesktop {
     constructor() {
         window.addEventListener('keydown', this.KeyDownDetectado);

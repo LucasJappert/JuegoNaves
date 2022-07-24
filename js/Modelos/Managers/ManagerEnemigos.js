@@ -1,4 +1,4 @@
-import { Enemigo } from "../Modelos/Enemigo.js";
+import { Enemigo } from "../Enemigo.js";
 export default class ManagerEnemigos{
     constructor(){
         this.enemigos = [];

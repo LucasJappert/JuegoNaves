@@ -2,7 +2,7 @@
 import { EscenaGameOver } from "./Escenas/EscenaGameOver.js";
 import { EscenaInterfaceUsuario } from "./Escenas/EscenaInterfaceUsuario.js";
 import { EscenaFondo } from "./Escenas/EscenaFondo.js";
-import { PrecargarImagenes, ReiniciarJuego } from "./Utilidades/FuncionesUtiles.js";
+import { PrecargarImagenes, ReiniciarJuego } from "./Infraestructura/FuncionesUtiles.js";
 import { ControlesMobileIzquierda } from "./Controles/ControlesMobileIzquierda.js";
 import { ControlesDesktop } from "./Controles/ControlesDesktop.js";
 //#endregion

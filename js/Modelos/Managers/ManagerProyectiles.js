@@ -1,4 +1,4 @@
-import Proyectil from "../Modelos/Proyectil.js";
+import Proyectil from "../Proyectil.js";
 export default class ManagerProyectiles{
     constructor(){
         this.proyectiles = [];
@@ -16,8 +16,8 @@ export default class ManagerProyectiles{
             proyectil.Dibujar();
         });
     }
-    AgregarProyectil(x, y, disparadoPor, tipoProyectil){
-        let nuevoProyectil = new Proyectil(x, y, disparadoPor, tipoProyectil);
+    AgregarProyectil(x, y, objectoCaster, tipoProyectil){
+        let nuevoProyectil = new Proyectil(x, y, objectoCaster, tipoProyectil);
         this.proyectiles.push(nuevoProyectil);
     }
 }

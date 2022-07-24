@@ -1,6 +1,6 @@
-import ManagerEnemigos from "./ManagerEnemigos.js";
-import ManagerExplosiones from "./ManagerExplosiones.js";
-import ManagerProyectiles from "./ManagerProyectiles.js";
+import ManagerEnemigos from "../Modelos/Managers/ManagerEnemigos.js";
+import ManagerExplosiones from "../Modelos/Managers/ManagerExplosiones.js";
+import ManagerProyectiles from "../Modelos/Managers/ManagerProyectiles.js";
 import { MiNave } from "../Modelos/MiNave.js";
 
 const RandomEntre = (min, max) => {
